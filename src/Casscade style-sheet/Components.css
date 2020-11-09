@@ -1,0 +1,175 @@
+@font-face {
+    font-family: 'charcoalregular';
+    src: url('../Fonts/charcoal-webfont.woff2') format('woff2'),
+         url('../Fonts/charcoal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text{
+    font-family: 'charcoalregular';    
+}
+
+.home{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.icon-div{
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #939598;
+    right: 10%;
+    left: 10%;
+    top: 5%;
+    bottom: 5%;
+    width: 90%;
+    height: 90%;
+    z-index: 3;
+}
+
+.TailBackground {
+    position: fixed;
+    height: calc(100vh - 40px);
+    width: calc(100vw - 235px);
+    bottom: 0px;
+    background: url('../Images/BackgroundCentred.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    z-index: 1;
+}
+  
+@media screen and (orientation: portrait) {
+    .TailBackground {
+        background-size: 100vw;
+        background-position-x: center;
+        width: 100%;
+    }  
+}
+
+.DotsBackground{
+    background: url('../Images/Red.png');
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.icon-img {
+    position: relative;
+    width: max(60px);
+    height: max(60px);
+    top: 8px;
+}
+
+.icon-label {
+    font-size: 80%;
+    top: 8px;
+    position: relative;
+}
+
+.images-div{
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 110px);
+    grid-template-rows: repeat(5, 110px);
+    width: 220px;
+}
+
+@media screen and (max-width: 300px) {
+    .images-div {
+        grid-template-columns: 110px;
+        grid-template-rows: repeat(9, 110px);
+        width: 110px;
+    }
+}
+
+.topbar-div{
+    height: 38px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 40px minmax(105px, 120px) minmax(27px, 60px) minmax(48px, 60px) minmax(42px, 60px) minmax(46px, 60px) 146px;
+    border: black;
+    border-bottom: 2px solid #000000;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.topbar-logo {
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    height: 26px;
+}
+
+.topbar-label{
+    position: relative;
+    top: 8px;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 450px) {
+    .topbar-no-button{
+        font-size: 0px;
+    }    
+}
+
+.triangulo-down {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    border-top: 14px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent; 
+}
+
+.triangulo-up {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    border-bottom: 14px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent; 
+}
+
+.ddm-div {
+    position: absolute;
+    right: 0px;
+    width: 146px;
+    height: 100%;
+}
+
+.ddm-div-label{
+    position: absolute;
+    width: 100px;
+    height: 38px;
+    right: 42px;
+    background-color: #F2BE48;
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+}
+
+.div-triangulo{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.ddm-img{
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    height: max(24px);
+}
+
+.ddm-label{
+    position: absolute;
+    padding: 8px 0;
+    font-size: 18px;
+}
