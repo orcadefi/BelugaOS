@@ -40,8 +40,12 @@
 }
 
 html, body, #Beluga, #Beluga>div {
-  background-color: #7ccfa1;
   height: 100vh;
+}
+
+html {
+  background-color: #7ccfa1;
+  z-index: -4;
 }
 
 #App {

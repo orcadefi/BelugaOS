@@ -5,13 +5,13 @@ import "../Casscade style-sheet/Components.css"
 class DropdownMenu extends React.Component {
     render() {
         return (
-            <div class="ddm-div">
-                <div class="ddm-div-label">
-                    <img class="ddm-img" src={this.props.imgcurrency} alt={this.props.alt}></img>
-                    <label class="text ddm-label">{this.props.currency}</label>
+            <div className="ddm-div">
+                <div className="ddm-div-label">
+                    <img className="ddm-img" src={this.props.imgcurrency} alt={this.props.alt}></img>
+                    <label className="text ddm-label">{this.props.currency}</label>
                 </div>
-                <div class="div-triangulo">
-                    <div class="triangulo-down"></div>
+                <div className="div-triangulo">
+                    <div className="triangulo-down"></div>
                 </div>
             </div>
         );

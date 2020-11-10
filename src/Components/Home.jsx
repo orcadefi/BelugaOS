@@ -17,7 +17,7 @@ class Home extends React.Component {
                 <TopBar id="topbar" imgcurrency={currency.img} alt={currency.label} currency={currency.label}/>
                 <div className="images-div">
                     {images.map((data) =>
-                        <Icon src={data.object} alt={data.label} label={data.label} id={data.id}/>
+                        <Icon divName="-home" key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id}/>
                     )}
                 </div>
             </div>

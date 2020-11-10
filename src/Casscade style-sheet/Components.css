@@ -6,6 +6,22 @@
     font-style: normal;
 }
 
+.heading1{
+    font-size: 17px;
+}
+
+.heading2{
+    font-size: 14px;
+}
+
+.heading3{
+    font-size: 13px;
+}
+
+.body-text{
+    font-size: 9px;
+}
+
 .text{
     font-family: 'charcoalregular';    
 }
@@ -16,17 +32,50 @@
     height: 100%;
 }
 
-.icon-div{
-    border-style: dashed;
+[class^="icon-div"] {
+    border: solid transparent;
     border-width: 2px;
-    border-color: #939598;
     right: 10%;
     left: 10%;
     top: 5%;
     bottom: 5%;
-    width: 90%;
-    height: 90%;
-    z-index: 3;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    align-content: center;
+    text-align: center;
+}
+
+.icon-div-home:hover{
+    /*border: solid #7ccfa1;*/
+    border: solid #70bd92;
+    border-width: 2px;
+    background-color: rgba(44.7, 74.9, 58, 0.2);
+    right: 10%;
+    left: 10%;
+    top: 5%;
+    bottom: 5%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    align-content: center;
+    text-align: center;
+}
+
+.icon-div-window:hover{
+    /*border: solid #7ccfa1;*/
+    border: solid #939598;
+    border-width: 2px;
+    background-color: #D1D3D4;
+    right: 10%;
+    left: 10%;
+    top: 5%;
+    bottom: 5%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    align-content: center;
+    text-align: center;
 }
 
 .TailBackground {
@@ -38,7 +87,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom center;
-    z-index: 1;
+    z-index: -3;
 }
   
 @media screen and (orientation: portrait) {
@@ -51,7 +100,7 @@
 
 .DotsBackground{
     background: url('../Images/Red.png');
-    z-index: 2;
+    z-index: -2;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -62,29 +111,32 @@
     width: max(60px);
     height: max(60px);
     top: 8px;
+    cursor: pointer;
 }
 
 .icon-label {
     font-size: 80%;
     top: 8px;
     position: relative;
+    cursor: pointer;
 }
 
 .images-div{
     position: absolute;
     top: 60px;
-    right: 15px;
+    right: 30px;
     display: grid;
-    grid-template-columns: repeat(2, 110px);
-    grid-template-rows: repeat(5, 110px);
-    width: 220px;
+    grid-template-columns: repeat(2, 100px);
+    grid-template-rows: repeat(5, 100px);
+    grid-gap: 10px;
+    width: 210px;
 }
 
 @media screen and (max-width: 300px) {
     .images-div {
-        grid-template-columns: 110px;
-        grid-template-rows: repeat(9, 110px);
-        width: 110px;
+        grid-template-columns: 100px;
+        grid-template-rows: repeat(9, 100px);
+        width: 100px;
     }
 }
 
@@ -172,4 +224,78 @@
     position: absolute;
     padding: 8px 0;
     font-size: 18px;
+}
+
+.window-div{
+    padding: 30px;
+    background: #ccc;
+    width: 100px;
+    cursor: move;
+}
+
+[id^="div-icon-created-"] {
+    position: absolute;
+    top: 0px;
+    width: 100px;
+    height: 100px;
+}
+
+.window-container{
+    width: 50vw;
+    height: 50vh;
+}
+
+.window-topbar{
+    width: 100%;
+    height: 39px;
+    background-color: #F2BE48;
+    cursor: move;
+    display: grid;
+    grid-template-columns: 3px 10px 10px 19px 10px 1fr 26px auto 26px 1fr 10px 19px 10px 10px 3px;
+    grid-template-rows: 8px 19px 8px 4px;
+    border: solid black;
+    border-width: 2px;
+}
+
+.window-content{
+    background-color: #E6E7E8;
+    width: 100%;
+    height: 100%;
+    border-left: solid black;
+    border-right: solid black;
+    border-bottom: solid black;
+    border-width: 2px;
+}
+
+.lines{
+    background-image: url('../Images/Docs/Lines.svg');
+    background-size: auto 100%;
+    grid-row: 2/3;
+}
+
+.square{
+    background-color: #7ccfa1;
+    border: solid black;
+    border-width: 2px;
+    grid-row: 2/3;
+}
+
+.window-grid{
+    position: relative;
+    width: calc(100% - 46px);
+    height: calc(100% - 46px);
+    top: 23px;
+    left: 23px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-rows: repeat(auto-fit, 100px);
+    grid-gap: 10px;
+}
+
+.window{
+    position: relative;
+    width: calc(100% - 46px);
+    height: calc(100% - 46px);
+    top: 23px;
+    left: 23px;
 }
