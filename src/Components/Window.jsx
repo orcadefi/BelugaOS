@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import Draggable from 'react-draggable';
+import { ResizableBox } from 'react-resizable';
 import "../Casscade style-sheet/Components.css";
+import Iframe from 'react-iframe'
 
 import Icon from './Icon';
 
@@ -14,6 +16,7 @@ import Roadmapimg from "../Images/Roadmap.svg";
 import Referralimg from "../Images/Referral.svg";
 import Stakingimg from "../Images/Staking.svg";
 import Votingimg from "../Images/Voting.svg";
+import Orcaimg from "../Images/Orca.svg"
 
 import GitHubimg from "../Images/Docs/GitHub.svg";
 import ReadMeimg from "../Images/Docs/ReadMe.svg";
@@ -27,7 +30,8 @@ export let images = [
     { object: Borrowimg, label: "Borrow", id: 6 },
     { object: Roadmapimg, label: "Roadmap", id: 7 },
     { object: Mailimg, label: "Mail", id: 8 },
-    { object: Profileimg, label: "Profile", id: 9 }
+    { object: Profileimg, label: "Profile", id: 9 },
+    { object: Orcaimg, label: "Orca", id: 10}
 ]
 
 class WindowDocs extends React.Component {
@@ -46,13 +50,13 @@ class WindowDocs extends React.Component {
 
     render() {
         let DocsData = [
-            { object: GitHubimg, label: "Github", id: 1 , func: this.githubFunction},
+            { object: GitHubimg, label: "Github", id: 1, func: this.githubFunction },
             { object: ReadMeimg, label: "Read Me", id: 2 }
         ]
         return (
-            <div className="window-grid">
+            <div className="window-grid" style={{gridTemplateColumns: "repeat(2, 100px)"}}>
                 {DocsData.map((data) =>
-                    <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id}/>
+                    <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} />
                 )}
             </div>
         )
@@ -129,8 +133,31 @@ class WindowReadMe extends React.Component {
             <div className="window">
                 <label className="text heading1"> Read Me</label>
                 <br />
-                <p className="text heading2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec mauris ullamcorper, convallis sapien ut, eleifend elit. Vestibulum dignissim elementum leo in tincidunt. Suspendisse viverra cursus feugiat. Sed sagittis pretium ipsum. Ut commodo porta purus sit amet lobortis. Ut euismod, mauris in rutrum fringilla, enim sem molestie mauris, iaculis rhoncus quam nibh id ex. Sed auctor est nisi, sed condimentum ligula aliquam at. </p>
-        </div>
+                <p className="text heading2" style={{ textAlign: "justify", textJustify: "inter-word"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec mauris ullamcorper, convallis sapien ut, eleifend elit. Vestibulum dignissim elementum leo in tincidunt. Suspendisse viverra cursus feugiat. Sed sagittis pretium ipsum. Ut commodo porta purus sit amet lobortis. Ut euismod, mauris in rutrum fringilla, enim sem molestie mauris, iaculis rhoncus quam nibh id ex. Sed auctor est nisi, sed condimentum ligula aliquam at. </p>
+            </div>
+        )
+    }
+}
+
+class WindowOrca extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+    }
+
+    render() {
+        return (
+            <div style={{width:"100%", height:"100%"}}>
+                <Iframe url="http://orcadefi.com/"
+                    width="100%"
+                    height="100%"
+                    id="orcaFrame"
+                    className="orcaFrame"
+                    position="relative"/>
+            </div>
         )
     }
 }
@@ -145,7 +172,8 @@ export let translation = {
     "RoadMap": <WindowRoadmap />,
     "Mail": <WindowMail />,
     "Profile": <WindowProfile />,
-    "Read Me": <WindowReadMe />
+    "Read Me": <WindowReadMe />,
+    "Orca": <WindowOrca />
 }
 
 export default class Window extends React.Component {
@@ -153,26 +181,75 @@ export default class Window extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            label: this.props.label
+            label: this.props.label,
+            right_bound: window.innerWidth,
+            bottom_bound: window.innerHeight,
+            resize_width: 250,
+            resize_height: 190,
+            max_width_size: 250,
+            max_height_size: 190
         };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.updateWindowLimit = this.updateWindowLimit.bind(this);
+        this.draggRef = React.createRef()
     }
 
     componentDidMount() {
         ReactDOM.render(translation[(this.state.label)], document.getElementById("window-content-" + this.state.label));
+        this.updateWindowDimensions();
+    }
+
+    updateWindowDimensions() {
+        let rdiv = document.getElementById("window-resizable-" + this.state.label)
+        let right = window.innerWidth - parseInt(rdiv.style.width);
+        let bottom = window.innerHeight - parseInt(rdiv.style.height);
+        this.setState({
+            right_bound: right,
+            bottom_bound: bottom,
+            max_width_size: window.innerWidth,
+            max_height_size: window.innerHeight - 40
+        })
+    }
+
+    updateWindowLimit() {
+        let rdiv = document.getElementById("window-resizable-" + this.state.label)
+        let style_data = window.getComputedStyle(rdiv);
+        let matrix = style_data.transform || style_data.webkitTransform || style_data.mozTransform
+        let matrixType = matrix.includes('3d') ? '3d' : '2d'
+        let matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
+        let x, y = 0
+        if (matrixType === '2d') {
+            x = matrixValues[4]
+            y = matrixValues[5]
+        }
+        if (matrixType === '3d') {
+            x = matrixValues[12]
+            y = matrixValues[13]
+        }
+        this.setState({
+            max_width_size: window.innerWidth - x,
+            max_height_size: window.innerHeight - y
+        })
     }
 
     render() {
         return (
             <Draggable
                 handle=".window-topbar"
-                defaultPosition={{ x: 50, y: 50, z: 4 }}>
-                <div>
-                    <div className="window-container">
-                        <WindowTopBar label={this.props.label} />
-                        <div id={"window-content-" + this.state.label} className="window-content"></div>
-                    </div>
-                </div>
-            </Draggable>
+                defaultPosition={{ x: 0, y: 40, z: 4 }}
+                cancel={".react-resizable-handle"}
+                bounds={{ left: 0, top: 40, right: this.state.right_bound, bottom: this.state.bottom_bound }}
+                onStart={() => this.updateWindowDimensions()}
+                onStop={() => this.updateWindowLimit()}
+                >
+                <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[250, 190]}
+                    maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
+                    id={"window-resizable-" + this.state.label}
+                    ref={this.draggRef}>
+                            <WindowTopBar label={this.props.label} />
+                            <div id={"window-content-" + this.state.label} className="window-content"></div>
+                </ResizableBox>
+            </Draggable >
         );
     }
 }
@@ -201,7 +278,7 @@ class WindowTopBar extends React.Component {
                 <div className="lines" style={{ gridColumn: "6/7" }}></div>
                 <div className="text" style={{ gridColumn: "8/9", gridRow: "2/3", textAlign: "center" }}>{this.props.label}</div>
                 <div className="lines" style={{ gridColumn: "10/11" }}></div>
-                <div className="square" onClick={() => this.closeWindow()} style={{cursor: "pointer", gridColumn: "12/13" }}><div style={{ width: "45%", height: "45%", borderRight: "solid black", borderBottom: "solid black", borderWidth: "2px", backgroundColor: "#E6E7E8" }}></div></div>
+                <div className="square" onClick={() => this.closeWindow()} style={{ cursor: "pointer", gridColumn: "12/13" }}><div style={{ width: "45%", height: "45%", borderRight: "solid black", borderBottom: "solid black", borderWidth: "2px", backgroundColor: "#E6E7E8" }}></div></div>
                 <div className="lines" style={{ gridColumn: "14/15" }}></div>
                 <div style={{ gridColumn: "1/16", gridRow: "4/5", borderTop: "solid black", borderWidth: "2px" }}></div>
             </div>
