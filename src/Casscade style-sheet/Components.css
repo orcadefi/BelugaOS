@@ -241,6 +241,7 @@
 }
 
 .window-container{
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -265,7 +266,7 @@
     border-right: solid black;
     border-bottom: solid black;
     border-width: 2px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .lines{
@@ -403,4 +404,12 @@
 
 ::-webkit-scrollbar-button:single-button:horizontal:increment:hover{
     background-color: #E6E7E8;
+}
+
+::-webkit-scrollbar-corner {
+    background: blue;
+    width: 26px;
+    height: 26px;
+	border-top:1px solid #D9D9D9;
+	border-left:1px solid #D9D9D9;
 }

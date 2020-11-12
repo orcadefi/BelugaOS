@@ -17,7 +17,8 @@ class Icon extends React.Component {
             src: this.props.src,
             alt: this.props.alt,
             label: this.props.label,
-            divName: divName
+            divName: divName,
+            windowZ: this.props.windowZ
         };
         this.createWindow = this.createWindow.bind(this)
     }
@@ -33,10 +34,13 @@ class Icon extends React.Component {
                 var homeDiv = document.getElementById('topbar');
                 document.body.insertBefore(windows, homeDiv)
                 ReactDOM.render(
-                      <Window label={this.state.label}/>,
+                    <Window windowZ={this.state.windowZ} label={this.state.label} />,
                     document.getElementById(NewDivName)
-                  );
-            }            
+                );
+                this.setState({
+                    windowZ: {label: 0}
+                })
+            }
         }
 
     }
@@ -46,7 +50,7 @@ class Icon extends React.Component {
             <div id={"id-" + this.props.id} className={"icon-div" + this.state.divName} onClick={() => this.createWindow()}>
                 <img src={this.props.src} alt={this.props.alt} className="icon-img"></img>
                 <br></br>
-                <label  className="text icon-label">{this.props.label}</label>
+                <label className="text icon-label">{this.props.label}</label>
             </div>
         );
     }

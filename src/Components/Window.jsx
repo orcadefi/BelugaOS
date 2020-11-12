@@ -31,7 +31,7 @@ export let images = [
     { object: Roadmapimg, label: "Roadmap", id: 7 },
     { object: Mailimg, label: "Mail", id: 8 },
     { object: Profileimg, label: "Profile", id: 9 },
-    { object: Orcaimg, label: "Orca", id: 10}
+    { object: Orcaimg, label: "Orca", id: 10 }
 ]
 
 class WindowDocs extends React.Component {
@@ -54,7 +54,7 @@ class WindowDocs extends React.Component {
             { object: ReadMeimg, label: "Read Me", id: 2 }
         ]
         return (
-            <div className="window-grid" style={{gridTemplateColumns: "repeat(2, 100px)"}}>
+            <div className="window-grid" style={{ gridTemplateColumns: "repeat(2, 100px)" }}>
                 {DocsData.map((data) =>
                     <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} />
                 )}
@@ -133,7 +133,7 @@ class WindowReadMe extends React.Component {
             <div className="window">
                 <label className="text heading1"> Read Me</label>
                 <br />
-                <p className="text heading2" style={{ textAlign: "justify", textJustify: "inter-word"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec mauris ullamcorper, convallis sapien ut, eleifend elit. Vestibulum dignissim elementum leo in tincidunt. Suspendisse viverra cursus feugiat. Sed sagittis pretium ipsum. Ut commodo porta purus sit amet lobortis. Ut euismod, mauris in rutrum fringilla, enim sem molestie mauris, iaculis rhoncus quam nibh id ex. Sed auctor est nisi, sed condimentum ligula aliquam at. </p>
+                <p className="text heading2" style={{ textAlign: "justify", textJustify: "inter-word" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec mauris ullamcorper, convallis sapien ut, eleifend elit. Vestibulum dignissim elementum leo in tincidunt. Suspendisse viverra cursus feugiat. Sed sagittis pretium ipsum. Ut commodo porta purus sit amet lobortis. Ut euismod, mauris in rutrum fringilla, enim sem molestie mauris, iaculis rhoncus quam nibh id ex. Sed auctor est nisi, sed condimentum ligula aliquam at. </p>
             </div>
         )
     }
@@ -150,13 +150,13 @@ class WindowOrca extends React.Component {
 
     render() {
         return (
-            <div style={{width:"100%", height:"100%"}}>
+            <div style={{ width: "100%", height: "100%" }}>
                 <Iframe url="http://orcadefi.com/"
                     width="100%"
                     height="100%"
                     id="orcaFrame"
                     className="orcaFrame"
-                    position="relative"/>
+                    position="relative" />
             </div>
         )
     }
@@ -187,16 +187,52 @@ export default class Window extends React.Component {
             resize_width: 250,
             resize_height: 190,
             max_width_size: 250,
-            max_height_size: 190
+            max_height_size: 190,
+            zIndex: 0
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.updateWindowLimit = this.updateWindowLimit.bind(this);
+        this.updateZIndex = this.updateZIndex.bind(this)
         this.draggRef = React.createRef()
+    }
+
+    updateZIndex() {
+        let names = Object.keys(translation)
+        let divs = []
+        for (let i = 0; i < names.length; i = i + 1) {
+            let divToPush = document.getElementById("window-resizable-" + names[i])
+            if (divToPush !== null) {
+                divs.push(divToPush)
+            }
+        }
+        const max = divs.length + 1;
+        const actualDiv = document.getElementById("window-resizable-" + this.state.label);
+        let tempval = 0;
+        if (actualDiv != null) {
+            tempval = actualDiv.style.zIndex
+        }
+        const actualZindex = tempval;
+        if (actualZindex !== 0) {
+            for (let i = 0; i < divs.length; i = i + 1) {
+                if (divs[i].style.zIndex > actualZindex && divs[i].id !== ("window-resizable-" + this.state.label)) {
+                    divs[i].style.zIndex = divs[i].style.zIndex - 1;
+                }
+            }
+            actualDiv.style.zIndex = max
+        } else {
+            this.setState({
+                zIndex: max + 1
+            })
+        }
     }
 
     componentDidMount() {
         ReactDOM.render(translation[(this.state.label)], document.getElementById("window-content-" + this.state.label));
         this.updateWindowDimensions();
+    }
+
+    componentWillMount() {
+        this.updateZIndex()
     }
 
     updateWindowDimensions() {
@@ -209,6 +245,7 @@ export default class Window extends React.Component {
             max_width_size: window.innerWidth,
             max_height_size: window.innerHeight - 40
         })
+        this.updateZIndex()
     }
 
     updateWindowLimit() {
@@ -232,6 +269,18 @@ export default class Window extends React.Component {
         })
     }
 
+    setZIndex(z) {
+        if (z > 2 && z < 200) {
+            this.setState({
+                zIndex: z
+            })
+        }
+    }
+
+    getZIndex() {
+        return this.state.zIndex
+    }
+
     render() {
         return (
             <Draggable
@@ -241,13 +290,14 @@ export default class Window extends React.Component {
                 bounds={{ left: 0, top: 40, right: this.state.right_bound, bottom: this.state.bottom_bound }}
                 onStart={() => this.updateWindowDimensions()}
                 onStop={() => this.updateWindowLimit()}
-                >
+            >
                 <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[250, 190]}
                     maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
                     id={"window-resizable-" + this.state.label}
-                    ref={this.draggRef}>
-                            <WindowTopBar label={this.props.label} />
-                            <div id={"window-content-" + this.state.label} className="window-content"></div>
+                    ref={this.draggRef} style={{ zIndex: this.state.zIndex }}
+                    onClick={() => this.updateZIndex()}>
+                    <WindowTopBar label={this.props.label} />
+                    <div id={"window-content-" + this.state.label} className="window-content"></div>
                 </ResizableBox>
             </Draggable >
         );
