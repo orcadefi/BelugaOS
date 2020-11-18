@@ -17,6 +17,7 @@ class Icon extends React.Component {
             src: this.props.src,
             alt: this.props.alt,
             label: this.props.label,
+            top_label: this.props.top_label,
             divName: divName,
             windowZ: this.props.windowZ
         };
@@ -27,14 +28,14 @@ class Icon extends React.Component {
         if (this.state.function !== undefined) {
             this.state.function()
         } else {
-            let NewDivName = "div-icon-created-" + this.state.label;
+            let NewDivName = "div-icon-created-" + this.state.top_label;
             if (document.getElementById(NewDivName) == null) {
                 var windows = document.createElement("div");
                 windows.setAttribute("id", NewDivName)
                 var homeDiv = document.getElementById('topbar');
                 document.body.insertBefore(windows, homeDiv)
                 ReactDOM.render(
-                    <Window windowZ={this.state.windowZ} label={this.state.label} />,
+                    <Window windowZ={this.state.windowZ} label={this.state.top_label} id={this.state.id}/>,
                     document.getElementById(NewDivName)
                 );
                 this.setState({

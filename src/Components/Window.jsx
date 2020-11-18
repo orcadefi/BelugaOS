@@ -17,21 +17,30 @@ import Referralimg from "../Images/Referral.svg";
 import Stakingimg from "../Images/Staking.svg";
 import Votingimg from "../Images/Voting.svg";
 import Orcaimg from "../Images/Orca.svg"
+import Metamask from "./Metamask"
 
 import GitHubimg from "../Images/Docs/GitHub.svg";
 import ReadMeimg from "../Images/Docs/ReadMe.svg";
 
+import RefLinkimg from "../Images/Referral/RefLink.svg"
+import InvYourFriendsimg from "../Images/Referral/InvYourFriends.svg"
+import Cryptoimg from "../Images/Referral/Crypto.svg"
+
 export let images = [
-    { object: Docsimg, label: "Docs", id: 1 },
-    { object: Votingimg, label: "Voting", id: 2 },
-    { object: Stakingimg, label: "Staking", id: 3 },
-    { object: Lendimg, label: "Lend", id: 4 },
-    { object: Referralimg, label: "Referral", id: 5 },
-    { object: Borrowimg, label: "Borrow", id: 6 },
-    { object: Roadmapimg, label: "Roadmap", id: 7 },
-    { object: Mailimg, label: "Mail", id: 8 },
-    { object: Profileimg, label: "Profile", id: 9 },
-    { object: Orcaimg, label: "Orca", id: 10 }
+    { object: Docsimg, label: "Docs", id: 1, top_label: "Beluga Porject" },
+    { object: Votingimg, label: "Voting", id: 2, top_label: "Voting" },
+    { object: Stakingimg, label: "Staking", id: 3, top_label: "Stake your BBI" },
+    { object: Lendimg, label: "Lend", id: 4, top_label: "Lend" },
+    { object: Referralimg, label: "Referral", id: 5, top_label: "Referral Program" },
+    { object: Borrowimg, label: "Borrow", id: 6, top_label: "Borrow" },
+    { object: Roadmapimg, label: "Roadmap", id: 7, top_label: "Roadmap" },
+    { object: Mailimg, label: "Mail", id: 8, top_label: "Email" },
+    { object: Profileimg, label: "Profile", id: 9, top_label: "Profile" },
+    {
+        object: Orcaimg, label: "Orca", id: 10, top_label: "Orca", function: function orcaFunction() {
+            window.open('http://orcadefi.com/', '_blank');
+        }
+    }
 ]
 
 class WindowDocs extends React.Component {
@@ -50,13 +59,13 @@ class WindowDocs extends React.Component {
 
     render() {
         let DocsData = [
-            { object: GitHubimg, label: "Github", id: 1, func: this.githubFunction },
-            { object: ReadMeimg, label: "Read Me", id: 2 }
+            { object: GitHubimg, label: "Github", id: 11, func: this.githubFunction },
+            { object: ReadMeimg, label: "Read Me", id: 12 }
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(2, 100px)" }}>
                 {DocsData.map((data) =>
-                    <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} />
+                    <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} top_label={data.label} />
                 )}
             </div>
         )
@@ -89,8 +98,44 @@ class WindowLend extends React.Component {
 
 class WindowReferral extends React.Component {
     render() {
+        let imgs = [
+            { image: RefLinkimg, top: '1.Get referral link', data: 'Register and get your unique referral link and code', prop: 'Referral Link' },
+            { image: InvYourFriendsimg, top: '2.Invite Your Friends', data: 'Invite your friends to register via your link or code', prop: 'Invite Your Friends' },
+            { image: Cryptoimg, top: '3.Earn Crypto Together', data: 'You will receive up to $2,000 USD when your friends stake BBI on Beluga Exchange', prop: 'Earn Crypto' }
+        ]
         return (
-            <div></div>
+            <div style={{ position: "relative", height: "calc(100% - 23px)", width: "calc(100% - 23px)", top: "23px", left: "23px" }}>
+                <p className="text" style={{ fontSize: "20px", marginBlockEnd: "0px", marginBlockStart: "0px", }}>Referral Program</p>
+                <p className="text heading3" style={{ marginBlockStart: "0px" }}>Invite Friends, and earn fee</p>
+                <div className="referral-grid">
+                    <div className="text stats"></div>
+                    <div className="text stats"></div>
+                    <div className="text stats"></div>
+                </div>
+                <p className="text heading3">How it Works</p>
+                <div className="referral-grid-2">
+                    {imgs.map((data) =>
+                        <RefInstructions image={data.image} top={data.top} data={data.data}/>
+                    )}
+                </div>
+                <p className="text heading3">Bonus Calculation</p>
+                <p className="heading3 text no-space" style={{ fontSize: "8px", width: "385px" }}>You can earn up to $2,000 USD in free BBI for every friend you refer, depending on your friend's first successful BBI staking amount, and on condition that they passed KYC advanced</p>
+
+            </div>
+        )
+    }
+}
+
+class RefInstructions extends React.Component {
+    render() {
+        return (
+            <div className="text ref-works">
+                            <img src={this.props.image} style={{ width: "100%" }} />
+                            <div className="vertical-grid">
+                                <p className="heading3 text no-space" style={{fontSize: "10px"}}>{this.props.top}</p>
+                                <p className="heading3 text no-space" style={{ fontSize: "8px" }}>{this.props.data}</p>
+                            </div>
+                        </div>
         )
     }
 }
@@ -122,7 +167,12 @@ class WindowMail extends React.Component {
 class WindowProfile extends React.Component {
     render() {
         return (
-            <div></div>
+            <div>
+                <p>
+                    Metamask
+                </p>
+                <Metamask />
+            </div>
         )
     }
 }
@@ -163,18 +213,21 @@ class WindowOrca extends React.Component {
 }
 
 export let translation = {
-    "Docs": <WindowDocs />,
-    "Voting": <WindowVoting />,
-    "Staking": <WindowStaking />,
-    "Lend": <WindowLend />,
-    "Referral": <WindowReferral />,
-    "Borrow": <WindowBorrow />,
-    "RoadMap": <WindowRoadmap />,
-    "Mail": <WindowMail />,
-    "Profile": <WindowProfile />,
-    "Read Me": <WindowReadMe />,
-    "Orca": <WindowOrca />
+    1: { "label": "Beluga Porject", "Window": <WindowDocs /> },
+    2: { "label": "Voting", "Window": <WindowVoting /> },
+    3: { "label": "Stake your BBI", "Window": <WindowStaking /> },
+    4: { "label": "Lend", "Window": <WindowLend /> },
+    5: { "label": "Referral Program", "Window": <WindowReferral /> },
+    6: { "label": "Borrow", "Window": <WindowBorrow /> },
+    7: { "label": "Roadmap", "Window": <WindowRoadmap /> },
+    8: { "label": "Email", "Window": <WindowMail /> },
+    9: { "label": "Profile", "Window": <WindowProfile /> },
+    10: { "label": "Orca", "Window": <WindowOrca /> },
+    11: { "label": "", "Window": undefined },
+    12: { "label": "Read Me", "Window": <WindowReadMe /> },
+    'length': 12
 }
+
 
 export default class Window extends React.Component {
 
@@ -182,12 +235,13 @@ export default class Window extends React.Component {
         super(props);
         this.state = {
             label: this.props.label,
+            id: this.props.id,
             right_bound: window.innerWidth,
             bottom_bound: window.innerHeight,
-            resize_width: 250,
-            resize_height: 190,
-            max_width_size: 250,
-            max_height_size: 190,
+            resize_width: 370,
+            resize_height: 300,
+            max_width_size: 370,
+            max_height_size: 300,
             zIndex: 0
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -197,10 +251,10 @@ export default class Window extends React.Component {
     }
 
     updateZIndex() {
-        let names = Object.keys(translation)
+        //let names = Object.keys(translation)
         let divs = []
-        for (let i = 0; i < names.length; i = i + 1) {
-            let divToPush = document.getElementById("window-resizable-" + names[i])
+        for (let i = 1; i <= translation.length; i = i + 1) {
+            let divToPush = document.getElementById("window-resizable-" + translation[i]['label'])
             if (divToPush !== null) {
                 divs.push(divToPush)
             }
@@ -227,7 +281,7 @@ export default class Window extends React.Component {
     }
 
     componentDidMount() {
-        ReactDOM.render(translation[(this.state.label)], document.getElementById("window-content-" + this.state.label));
+        ReactDOM.render(translation[this.state.id]['Window'], document.getElementById("window-content-" + this.state.label));
         this.updateWindowDimensions();
     }
 
@@ -245,7 +299,6 @@ export default class Window extends React.Component {
             max_width_size: window.innerWidth,
             max_height_size: window.innerHeight - 40
         })
-        this.updateZIndex()
     }
 
     updateWindowLimit() {
@@ -291,7 +344,7 @@ export default class Window extends React.Component {
                 onStart={() => this.updateWindowDimensions()}
                 onStop={() => this.updateWindowLimit()}
             >
-                <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[250, 190]}
+                <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[370, 300]}
                     maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
                     id={"window-resizable-" + this.state.label}
                     ref={this.draggRef} style={{ zIndex: this.state.zIndex }}
