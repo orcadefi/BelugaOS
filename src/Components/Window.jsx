@@ -130,7 +130,7 @@ class RefInstructions extends React.Component {
     render() {
         return (
             <div className="text ref-works">
-                            <img src={this.props.image} style={{ width: "100%" }} />
+                <img src={this.props.image} style={{ width: "100%" }} alt={this.props.top}/>
                             <div className="vertical-grid">
                                 <p className="heading3 text no-space" style={{fontSize: "10px"}}>{this.props.top}</p>
                                 <p className="heading3 text no-space" style={{ fontSize: "8px" }}>{this.props.data}</p>
