@@ -251,7 +251,6 @@ export default class Window extends React.Component {
     }
 
     updateZIndex() {
-        //let names = Object.keys(translation)
         let divs = []
         for (let i = 1; i <= translation.length; i = i + 1) {
             let divToPush = document.getElementById("window-resizable-" + translation[i]['label'])
@@ -281,12 +280,13 @@ export default class Window extends React.Component {
     }
 
     componentDidMount() {
+        let thisDiv = ReactDOM.findDOMNode(this);
+        thisDiv.id = ("window-resizable-" + this.state.label)
+        thisDiv.style.position = "fixed"
+
         ReactDOM.render(translation[this.state.id]['Window'], document.getElementById("window-content-" + this.state.label));
         this.updateWindowDimensions();
-    }
-
-    componentWillMount() {
-        this.updateZIndex()
+        this.updateZIndex();
     }
 
     updateWindowDimensions() {
@@ -338,20 +338,23 @@ export default class Window extends React.Component {
         return (
             <Draggable
                 handle=".window-topbar"
-                defaultPosition={{ x: 0, y: 40, z: 4 }}
+                defaultPosition={{ x: 0, y: 40 }}
                 cancel={".react-resizable-handle"}
                 bounds={{ left: 0, top: 40, right: this.state.right_bound, bottom: this.state.bottom_bound }}
                 onStart={() => this.updateWindowDimensions()}
                 onStop={() => this.updateWindowLimit()}
+                ref={this.draggRef}
             >
-                <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[370, 300]}
-                    maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
-                    id={"window-resizable-" + this.state.label}
-                    ref={this.draggRef} style={{ zIndex: this.state.zIndex }}
-                    onClick={() => this.updateZIndex()}>
-                    <WindowTopBar label={this.props.label} />
-                    <div id={"window-content-" + this.state.label} className="window-content"></div>
-                </ResizableBox>
+                <div>
+                    <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[370, 300]}
+                        maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
+                        onClick={() => this.updateZIndex()}>
+                        <div style={{width: "100%", height: "100%"}}>
+                            <WindowTopBar label={this.props.label} />
+                            <div id={"window-content-" + this.state.label} className="window-content"></div>
+                        </div>
+                    </ResizableBox>
+                </div>    
             </Draggable >
         );
     }

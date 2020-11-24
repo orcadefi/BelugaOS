@@ -1,12 +1,8 @@
 import React from 'react';
 import "../Casscade style-sheet/Components.css"
-import Web3 from 'web3';
-var Eth = require('ethjs')
-var ethUtil = require('ethereumjs-util')
-var sigUtil = require('eth-sig-util')
+import getWeb3 from "../Functions/getWeb3"
 
-let web3 = Web3 | undefined;
-const BACKEND_URL = "http://orcadefi.com"
+const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 
 class Metamask extends React.Component {
 
@@ -14,106 +10,62 @@ class Metamask extends React.Component {
         super(props);
         this.state = {
             loading: false,
-            publicAddress: ""
+            web3: null,
+            accounts: null,
+            challenge: null,
+            signature: null 
         };
         this.handleClick = this.handleClick.bind(this);
-        this.handleSignMessage = this.handleSignMessage.bind(this);
-        this.handleAuthenticate = this.handleAuthenticate.bind(this);
-        this.submitexample = this.submitexample.bind(this);
+        this.getAccounts = this.getAccounts.bind(this);
+        this.getChallenge = this.getChallenge.bind(this);
+        this.signChallenge = this.signChallenge.bind(this);
+        this.verifySignature = this.verifySignature.bind(this);
     }
 
-    async submitexample() {
-        /*
-        let hasMsg = ethUtil.keccak256('Hello Alice!')
-        let hexString = '28eaa70d49540d4ce392b0695a631b88ecd3fa602c2d5a88ca65d6cabeab50dc'
-        let PrivateAddress = Uint8Array.from(Buffer.from(hexString, 'hex'));
-        console.log("private ")
-        console.log(PrivateAddress)
-        let publicAddress = ethUtil.privateToPublic('0x28eaa70d49540d4ce392b0695a631b88ecd3fa602c2d5a88ca65d6cabeab50dc')
-        let IsPrivateAddress = ethUtil.isValidPrivate(PrivateAddress)
-        console.log("public ")
-        console.log(publicAddress)
-        
-        let temp = {}
-
-        console.log("signing...")
-        temp = ethUtil.ecsign(hasMsg, PrivateAddress, 1)
-        console.log(temp)
-        let uint8 = ethUtil.ecrecover(hasMsg, temp.v, temp.r, temp.s, 1)
-        console.log("public recovered ")
-        console.log(uint8)
-        let data = await this.handleSignMessage("0x3fde3ff18cB3574ca8d8Ca2D4ad6Ec03e8EBd5dF", 'Hello Alice!')
-        console.log(data)
-        let u8a = Uint8Array.from(Buffer.from('30195c8b40b0989903e653838e5a550c4ae46b6a38e721a39bfec9ad83dc022805e164f5d016827eaf24141030679bbb11b620858153b94f58e962e8e5ea7d201c', 'hex'));
-        console.log(u8a)
-        */
-        
-        web3 = new Web3((window).ethereum);
-        let addresses = await (window).ethereum.request({ method: 'eth_requestAccounts' });
-        let from = addresses[0]
-        
-        let nonce = "Hello Alice!"
-        console.log(nonce)
-        
-
-        let msgParams = [
-            {
-              type: 'string',
-              name: 'Challenge',
-              value: nonce
-            }
-        ]
-        
-        var eth = new Eth(web3.currentProvider)
-        let resolve = await eth.signTypedData(msgParams, from).then((data) => { return data })
-
-        const recovered = sigUtil.recoverTypedSignatureLegacy({ data: msgParams, sig: resolve })
-
-        if (ethUtil.toChecksumAddress(recovered) === ethUtil.toChecksumAddress(from)) {
-          alert('Successfully ecRecovered signer as ' + from)
-        } else {
-          alert('Failed to verify signer when comparing ' + resolve + ' to ' + from)
-        }
-
-        return resolve;
+    getAccounts = async () => {
+        this.setState({ accounts: await (window).ethereum.request({ method: 'eth_requestAccounts' }) });
     }
 
-    async handleSignMessage(publicAddress, nonce) {
-        web3 = new Web3((window).ethereum);
-        try {
-            let msgParams = [
-                {
-                  type: 'string',
-                  name: 'Challenge',
-                  value: nonce
-                }
-            ]
-            var eth = new Eth(web3.currentProvider)
-            let tocons = await eth.signTypedData(msgParams, publicAddress).then((data) => { return data })
-            return tocons;
-        } catch (err) {
-            throw new Error('You need to sign the message to be able to log in.');
-        }
+    getChallenge = async () => {
+        const { accounts } = this.state;
+        const res = await fetch(
+            HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${accounts[0].toLowerCase()}`
+        );
+        let resJson = await res.json()
+        this.setState({ challenge: resJson });
     };
 
+    signChallenge = async () => {
+        const { web3, challenge, accounts } = this.state;
+        let result = null;
+        try {
+            result = await web3.currentProvider.request({ method: "eth_signTypedData", params: [challenge, accounts[0]] })
+        } catch {
+            //TODO
+        }
+        this.setState({ signature: result });
+    };
 
-    async handleAuthenticate(publicAddress, signature) {
+    verifySignature = async () => {
+        const { challenge, signature } = this.state;
+        const res = await fetch(
+            HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${challenge[1].value}/${signature}`
+        );
 
-        console.log("------------")
-        console.log(signature)
-
-        //signature = web3.utils.hexToUtf8(signature);
-
-        console.log(`address=${publicAddress}&signature=${signature}`)
-        return await fetch(
-            `https://orcadefi.herokuapp.com/${BACKEND_URL}/auth/authorize`, {
-            body: `address=${publicAddress}&signature=${signature}`,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            }
-        }).then((response) => {return response.json()});
-    }    
+        let recovered = null
+        try {
+            recovered = await res.json();
+        } catch {
+            
+        }
+        if (res.status === 200 && recovered.mensaje === "Authentication successful") {
+            console.log("Signature verified");
+            window.alert("Logged in successfully")
+        } else {
+            console.log("Signature not verified");
+            window.alert("An error occurred, please try again")
+        }
+    };
 
     async handleClick() {
 
@@ -121,83 +73,16 @@ class Metamask extends React.Component {
             loading: true,
         });
 
-        if ((window).ethereum._metamask.isEnabled()) {
-            this.setState({
-                loading: false,
-                publicAddress: (window).ethereum.selectedAddress
-            })
-            window.alert('MetaMask is already connected.');
-            return;
-        }
+        const web3 = await getWeb3();
+        this.setState({ web3 });
+        await this.getAccounts();        
 
-        // Check if MetaMask is installed
-        if (!(window).ethereum) {
-            this.setState({
-                loading: false
-            })
-            window.alert('Please install MetaMask first.');
-            return;
-        }
-
-        if (!web3) {
-            try {
-                // Request account access if needed
-                await (window).ethereum.request({ method: 'eth_requestAccounts' });
-
-                // We don't know window.web3 version, so we use our own instance of Web3
-                // with the injected provider given by MetaMask
-                web3 = new Web3((window).ethereum);
-            } catch (error) {
-                this.setState({
-                    loading: false
-                })
-                window.alert('You need to allow MetaMask.');
-                return;
-            }
-        }
-
-        const coinbase = await web3.eth.getCoinbase();
-        if (!coinbase) {
-            this.setState({
-                loading: false
-            })
-            window.alert('Please activate MetaMask first.');
-            return;
-        }
-
-        const publicAddress = coinbase.toLowerCase();
-
-        // Look if user with current publicAddress is already present on backend
-        let challenge = await fetch(
-            `https://orcadefi.herokuapp.com/${BACKEND_URL}/auth/challenge`, {
-            method: 'POST',
-            body: `address=${publicAddress}`,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            }
-        }).then((data) => {return data.json()})
-        
-        let nounce;
-
-        console.log(challenge)
-        console.log("\"" + challenge.result.challenge + "\"")
-
-        try {
-            nounce = challenge.result.challenge;
-        } catch {
-            nounce = undefined;
-        }
-        
-        let signature = await this.handleSignMessage(publicAddress, nounce)
-        console.log(`address=${publicAddress}&signature=${signature}`)
-
-        let response = await this.handleAuthenticate(publicAddress, signature).then((data) => {return data})
-
-        console.log(response)
+        await this.getChallenge()
+        await this.signChallenge()
+        await this.verifySignature()
 
         this.setState({
             loading: false,
-            publicAddress: publicAddress
         });
     };
 
@@ -205,9 +90,9 @@ class Metamask extends React.Component {
         return (
             <div className="metamask-div">
                 <button className="Login-button Login-mm" onClick={this.handleClick}>
-                    {this.state.loading ? 'Loading...' : (this.state.publicAddress !== "" ? this.state.publicAddress : 'Login with MetaMask')}
+                    {this.state.loading ? 'Loading...' : (this.state.accounts !== null ? this.state.accounts[0] : 'Login with MetaMask')}
                 </button>
-                <button className="Login-button Login-mm" onClick={this.submitexample}>
+                <button className="Login-button Login-mm" onClick={this.verifySignature}>
                     Example
                 </button>
             </div>
