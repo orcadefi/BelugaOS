@@ -67,7 +67,7 @@ class Metamask extends React.Component {
         }
     };
 
-    async handleClick() {
+    handleClick = async () => {
 
         this.setState({
             loading: true,

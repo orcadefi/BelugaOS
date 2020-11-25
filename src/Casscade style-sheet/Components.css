@@ -352,6 +352,95 @@ p.no-space{
     margin-block-end: 0px;
 }
 
+.container{
+    background-color: #bcbec0;
+    color: #727376;
+    border: solid black 2px;
+    width: calc(100% - 20px);
+}
+
+.activeButton{
+    background-color: #d1d3d4;
+    border-radius:5px;
+    border: solid black 1px;
+}
+
+.activeButton:hover{
+    background-color: #F2BE48;
+}
+
+.activeButton:active {
+    background-color: black;
+    color: #F2BE48;
+}
+
+.forButton{
+    background-color: #b4f263;
+    border-radius:5px;
+    border: solid black 1px;
+}
+
+.forButton:hover{
+    background-color: #76d100;
+}
+
+.forButton:active {
+    background-color: black;
+    color: #76d100;
+}
+
+.againstButton{
+    background-color: #f27548;
+    border-radius:5px;
+    border: solid black 1px;
+}
+
+.againstButton:hover{
+    background-color: #d83c04;
+}
+
+.againstButton:active {
+    background-color: black;
+    color: #d83c04;
+}
+
+.stakingContainer{
+    background-color: white;
+    border: solid black 2px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+}
+
+th{
+    font-weight: normal;
+    font-size: 15px;
+    height: 50px;
+}
+
+td, th{
+    width: 33%;
+}
+
+td {
+    height: 40px;
+    font-size: 20px;
+}
+
+.BBITable{
+    text-align: center;
+    top: 70px;
+    position: relative;
+    left: 23px;
+    width: 530px;
+}
+
+.textOverflow{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 /*
     Scrollbar for Chrome and Safari
 */
