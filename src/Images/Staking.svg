@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21.558mm" height="19.51mm" version="1.1" viewBox="0 0 21.558 19.51" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <clipPath>
+   <path d="m166 153h748v571.11h-748z"/>
+  </clipPath>
+  <clipPath id="clip2">
+   <rect width="1439" height="725"/>
+  </clipPath>
+  <g clip-path="url(#clip2)"></g>
+  <clipPath>
+   <path d="m0 0.67969h1v2.3203h-1z"/>
+  </clipPath>
+  <clipPath>
+   <path d="m6 0.67969h1426v2.3203h-1426z"/>
+  </clipPath>
+  <clipPath>
+   <path d="m0 666h1v2.8398h-1z"/>
+  </clipPath>
+  <clipPath>
+   <path d="m6 666h1426v2.8398h-1426z"/>
+  </clipPath>
+  <clipPath id="clip5">
+   <rect width="1439" height="669"/>
+  </clipPath>
+  <g clip-path="url(#clip5)"></g>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-70.205 -114.45)">
+  <g transform="matrix(.35278 0 0 .35278 -471.48 37.782)">
+   <g>
+    <path d="m1535.5 263.04h2.2851v-20.438h-2.2851z"/>
+    <path d="m1543.5 263.04h2.2852v-20.438h-2.2852z"/>
+    <path d="m1543.5 240.32h-5.75v2.2891h5.75z"/>
+    <path d="m1543.5 263.04h-5.75v2.2891h5.75z"/>
+    <path d="m1560.9 263.04h2.2891v-20.438h-2.2891z"/>
+    <path d="m1568.9 263.04h2.2851v-20.438h-2.2851z"/>
+    <path d="m1568.9 240.32h-5.75v2.2891h5.75z"/>
+    <path d="m1568.9 263.04h-5.75v2.2891h5.75z"/>
+    <path d="m1573.6 263.04h2.2852v-26.965h-2.2852z"/>
+    <path d="m1581.6 263.04h2.2851v-26.965h-2.2851z"/>
+    <path d="m1581.6 233.79h-5.75v2.2891h5.75z"/>
+    <path d="m1581.6 263.04h-5.75v2.2891h5.75z"/>
+    <path d="m1586.3 263.04h2.2852v-36.051h-2.2852z"/>
+    <path d="m1594.3 263.04h2.2851v-36.051h-2.2851z"/>
+    <path d="m1594.3 224.7h-5.75v2.2891h5.75z"/>
+    <path d="m1594.3 263.04h-5.75v2.2891h5.75z"/>
+   </g>
+   <path d="m1543.5 263.04h-5.75v-20.434h5.75z" fill="#fff"/>
+   <g>
+    <path d="m1548.2 263.04h2.2851v-28.57h-2.2851z"/>
+    <path d="m1556.2 263.04h2.2891v-28.57h-2.2891z"/>
+    <path d="m1556.2 232.19h-5.7461v2.2852h5.7461z"/>
+    <path d="m1556.2 263.04h-5.7461v2.2891h5.7461z"/>
+   </g>
+   <g fill="#fff">
+    <path d="m1556.2 263.04h-5.7461v-28.57h5.7461z"/>
+    <path d="m1568.9 263.04h-5.75v-20.434h5.75z"/>
+    <path d="m1581.6 263.04h-5.75v-26.961h5.75z"/>
+   </g>
+   <path d="m1594.3 263.04h-5.75v-36.051h5.75z" fill="#f0bd47"/>
+   <g>
+    <path d="m1555.7 226.47h-2.2891v-2.2852h2.2891z"/>
+    <path d="m1557.9 228.75h-2.2851v-2.2852h2.2851z"/>
+    <path d="m1560.2 228.75h-2.2891v-2.2852h2.2891z"/>
+    <path d="m1562.5 231.04h-2.2851v-2.2852h2.2851z"/>
+    <path d="m1564.8 231.04h-2.2852v-2.2852h2.2852z"/>
+    <path d="m1551.1 226.47h2.2891v-2.2852h-2.2891z"/>
+    <path d="m1548.8 228.75h2.2851v-2.2852h-2.2851z"/>
+    <path d="m1546.5 228.75h2.2891v-2.2852h-2.2891z"/>
+    <path d="m1544.2 231.04h2.2851v-2.2852h-2.2851z"/>
+    <path d="m1541.9 231.04h2.2891v-2.2852h-2.2891z"/>
+    <path d="m1539.6 233.33h2.2852v-2.2852h-2.2852z"/>
+    <path d="m1537.4 233.33h2.289v-2.2852h-2.289z"/>
+    <path d="m1587.7 221.89h-2.2891v-2.2852h2.2891z"/>
+    <path d="m1583.1 221.89h2.2851v-2.2852h-2.2851z"/>
+    <path d="m1580.8 224.18h2.2852v-2.2891h-2.2852z"/>
+    <path d="m1578.5 224.18h2.2891v-2.2891h-2.2891z"/>
+    <path d="m1576.2 226.47h2.2851v-2.2852h-2.2851z"/>
+    <path d="m1573.9 226.47h2.2891v-2.2852h-2.2891z"/>
+    <path d="m1590 219.61h2.2891v-2.2891h-2.2891z"/>
+    <path d="m1592.2 219.61h2.289v-2.2891h-2.289z"/>
+    <path d="m1587.7 219.61h2.2851v-2.2891h-2.2851z"/>
+    <path d="m1571.7 228.75h2.2851v-2.2852h-2.2851z"/>
+    <path d="m1569.4 228.75h2.2891v-2.2852h-2.2891z"/>
+    <path d="m1567.1 231.04h2.2851v-2.2852h-2.2851z"/>
+    <path d="m1564.8 231.04h2.2891v-2.2852h-2.2891z"/>
+    <path d="m1596.6 270.34h-61.109v2.2891h61.109z"/>
+   </g>
+  </g>
+ </g>
+</svg>

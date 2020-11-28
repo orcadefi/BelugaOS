@@ -1,0 +1,541 @@
+@font-face {
+    font-family: 'charcoalregular';
+    src: url('../Fonts/charcoal-webfont.woff2') format('woff2'),
+         url('../Fonts/charcoal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.heading1{
+    font-size: 17px;
+}
+
+.heading2{
+    font-size: 14px;
+}
+
+.heading3{
+    font-size: 13px;
+}
+
+.body-text{
+    font-size: 9px;
+}
+
+.text{
+    font-family: 'charcoalregular';    
+}
+
+.home{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+[class^="icon-div"] {
+    border: solid transparent;
+    border-width: 2px;
+    right: 10%;
+    left: 10%;
+    top: 5%;
+    bottom: 5%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    align-content: center;
+    text-align: center;
+}
+
+.icon-div-home:hover{
+    /*border: solid #7ccfa1;*/
+    border: solid #70bd92;
+    border-width: 2px;
+    background-color: rgba(44.7, 74.9, 58, 0.2);
+    right: 10%;
+    left: 10%;
+    top: 5%;
+    bottom: 5%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    align-content: center;
+    text-align: center;
+}
+
+.icon-div-window:hover{
+    /*border: solid #7ccfa1;*/
+    border: solid #939598;
+    border-width: 2px;
+    background-color: #D1D3D4;
+    right: 10%;
+    left: 10%;
+    top: 5%;
+    bottom: 5%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    align-content: center;
+    text-align: center;
+}
+
+.TailBackground {
+    position: fixed;
+    height: calc(100vh - 40px);
+    width: calc(100vw - 235px);
+    bottom: 0px;
+    background: url('../Images/BackgroundCentred.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    z-index: -3;
+}
+  
+@media screen and (orientation: portrait) {
+    .TailBackground {
+        background-size: 100vw;
+        background-position-x: center;
+        width: 100%;
+    }  
+}
+
+.DotsBackground{
+    background: url('../Images/Red.png');
+    z-index: -2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.icon-img {
+    position: relative;
+    width: max(60px);
+    height: max(60px);
+    top: 8px;
+    cursor: pointer;
+}
+
+.icon-label {
+    font-size: 80%;
+    top: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.images-div{
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    grid-template-rows: repeat(5, 100px);
+    grid-gap: 10px;
+    width: 210px;
+}
+
+@media screen and (max-width: 300px) {
+    .images-div {
+        grid-template-columns: 100px;
+        grid-template-rows: repeat(9, 100px);
+        width: 100px;
+    }
+}
+
+.topbar-div{
+    height: 38px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 40px minmax(105px, 120px) minmax(27px, 60px) minmax(48px, 60px) minmax(42px, 60px) minmax(46px, 60px) 146px;
+    border: black;
+    border-bottom: 2px solid #000000;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.topbar-logo {
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    height: 26px;
+}
+
+.topbar-label{
+    position: relative;
+    top: 8px;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 450px) {
+    .topbar-no-button{
+        font-size: 0px;
+    }    
+}
+
+.triangulo-down {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    border-top: 14px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent; 
+}
+
+.triangulo-up {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    border-bottom: 14px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent; 
+}
+
+.ddm-div {
+    position: absolute;
+    right: 0px;
+    width: 146px;
+    height: 100%;
+}
+
+.ddm-div-label{
+    position: absolute;
+    width: 100px;
+    height: 38px;
+    right: 42px;
+    background-color: #F2BE48;
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+}
+
+.div-triangulo{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.ddm-img{
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    height: max(24px);
+}
+
+.ddm-label{
+    position: absolute;
+    padding: 8px 0;
+    font-size: 18px;
+}
+
+.window-div{
+    padding: 30px;
+    background: #ccc;
+    width: 100px;
+    cursor: move;
+}
+
+[id^="div-icon-created-"] {
+    position: absolute;
+    top: 0px;
+    width: 100px;
+    height: 100px;
+}
+
+.window-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.window-topbar{
+    width: calc(100% - 4px);
+    height: 39px;
+    background-color: #F2BE48;
+    cursor: move;
+    display: grid;
+    grid-template-columns: 3px 10px 10px 19px 10px 1fr 26px auto 26px 1fr 10px 19px 10px 10px 3px;
+    grid-template-rows: 8px 19px 8px 4px;
+    border: solid black;
+    border-width: 2px;
+}
+
+.window-content{
+    background-color: #E6E7E8;
+    width: calc(100% - 4px);
+    height: calc(100% - 45px);
+    border-left: solid black;
+    border-right: solid black;
+    border-bottom: solid black;
+    border-width: 2px;
+    overflow: auto;
+}
+
+.lines{
+    background-image: url('../Images/Docs/Lines.svg');
+    background-size: auto 100%;
+    grid-row: 2/3;
+}
+
+.square{
+    background-color: #7ccfa1;
+    border: solid black;
+    border-width: 2px;
+    grid-row: 2/3;
+}
+
+.window-grid{
+    position: relative;
+    width: calc(100% - 46px);
+    height: calc(100% - 46px);
+    top: 23px;
+    left: 23px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-rows: repeat(auto-fit, 100px);
+    grid-gap: 10px;
+}
+
+.window{
+    position: relative;
+    width: calc(100% - 46px);
+    height: calc(100% - 46px);
+    top: 23px;
+    left: 23px;
+}
+
+.react-resizable-handle {
+    display: block;
+    background: url('../Images/AllWindows/ResizeIcon.svg');
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    border-top: solid black 1px;
+    border-left: solid black 1px;
+}
+
+.referral-grid{
+    display: grid;
+    grid-template-columns: 145px 145px 145px;
+    grid-template-rows: 60px;
+    grid-column-gap: 40px;
+}
+
+.referral-grid-2{
+    display: grid;
+    grid-template-columns: 165px 165px 165px;
+    grid-template-rows: 45px;
+    grid-column-gap: 10px;
+}
+
+.ref-works{
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 5px;
+}
+
+.stats{
+    background-color: white;
+    border: solid black 2px;
+}
+
+.vertical-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+}
+
+p.no-space{
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.container{
+    background-color: #bcbec0;
+    color: #727376;
+    border: solid black 2px;
+    width: calc(100% - 20px);
+}
+
+.activeButton{
+    background-color: #d1d3d4;
+    border-radius:5px;
+    border: solid black 1px;
+}
+
+.activeButton:hover{
+    background-color: #F2BE48;
+}
+
+.activeButton:active {
+    background-color: black;
+    color: #F2BE48;
+}
+
+.forButton{
+    background-color: #b4f263;
+    border-radius:5px;
+    border: solid black 1px;
+}
+
+.forButton:hover{
+    background-color: #76d100;
+}
+
+.forButton:active {
+    background-color: black;
+    color: #76d100;
+}
+
+.againstButton{
+    background-color: #f27548;
+    border-radius:5px;
+    border: solid black 1px;
+}
+
+.againstButton:hover{
+    background-color: #d83c04;
+}
+
+.againstButton:active {
+    background-color: black;
+    color: #d83c04;
+}
+
+.stakingContainer{
+    background-color: white;
+    border: solid black 2px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+}
+
+th{
+    font-weight: normal;
+    font-size: 15px;
+    height: 50px;
+}
+
+td, th{
+    width: 33%;
+}
+
+td {
+    height: 40px;
+    font-size: 20px;
+}
+
+.BBITable{
+    text-align: center;
+    top: 70px;
+    position: relative;
+    left: 23px;
+    width: 530px;
+}
+
+.textOverflow{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/*
+    Scrollbar for Chrome and Safari
+*/
+
+::-webkit-scrollbar {
+    width: 24px;
+    height: 24px;
+    background-color: #D1D3D4;
+}
+  
+::-webkit-scrollbar-track {
+    background-color: #D1D3D4 ;
+}
+
+::-webkit-scrollbar-track:horizontal{
+    border-top: solid black 2px;
+}
+
+::-webkit-scrollbar-track:vertical{
+    border-left: solid black 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E6E7E8;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border-left: solid black 2px;
+    border-top: solid black 2px;
+    border-bottom: solid black 2px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    border-left: solid black 2px;
+    border-top: solid black 2px;
+    border-right: solid black 2px;
+}
+
+::-webkit-scrollbar-button{
+    height: 24px;
+    width: 24px;
+}
+
+::-webkit-scrollbar-button:vertical{
+    border-left: solid black 2px;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement{
+    border-bottom: solid black 2px;
+    background: url('../Images/AllWindows/Up.svg');
+    background-size: contain;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover{
+    background-color: #E6E7E8;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment{
+    border-top: solid black 2px;
+    background: url('../Images/AllWindows/Down.svg');
+    background-size: contain;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment:hover{
+    background-color: #E6E7E8;
+}
+
+::-webkit-scrollbar-button:horizontal{
+    border-top: solid black 2px;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:decrement{
+    border-right: solid black 2px;
+    background: url('../Images/AllWindows/Left.svg');
+    background-size: contain;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:decrement:hover{
+    background-color: #E6E7E8;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:increment{
+    border-left: solid black 2px;
+    background: url('../Images/AllWindows/Right.svg');
+    background-size: contain;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:increment:hover{
+    background-color: #E6E7E8;
+}
+/*
+::-webkit-scrollbar-corner {
+    background: blue;
+    width: 26px;
+    height: 26px;
+	border-top:1px solid #D9D9D9;
+	border-left:1px solid #D9D9D9;
+}*/
