@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import "../Casscade style-sheet/Components.css"
-import Window from './Window'
+import Window from './Window/Main'
 
 class Icon extends React.Component {
 

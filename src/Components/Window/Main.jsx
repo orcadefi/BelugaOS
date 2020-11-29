@@ -2,37 +2,37 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
-import "../Casscade style-sheet/Components.css";
+import "../../Casscade style-sheet/Components.css";
 import Iframe from 'react-iframe'
 
-import Icon from './Icon';
+import Icon from '../Icon';
 
-import Borrowimg from "../Images/Borrow.svg";
-import Docsimg from "../Images/Docs.svg";
-import Lendimg from "../Images/Lend.svg";
-import Mailimg from "../Images/Mail.svg";
-import Profileimg from "../Images/Profile.svg";
-import Roadmapimg from "../Images/Roadmap.svg";
-import Referralimg from "../Images/Referral.svg";
-import Stakingimg from "../Images/Staking.svg";
-import Votingimg from "../Images/Voting.svg";
-import Orcaimg from "../Images/Orca.svg"
-import Metamask from "./Metamask"
+import Borrowimg from "../../Images/Borrow.svg";
+import Docsimg from "../../Images/Docs.svg";
+import Lendimg from "../../Images/Lend.svg";
+import Mailimg from "../../Images/Mail.svg";
+import Profileimg from "../../Images/Profile.svg";
+import Roadmapimg from "../../Images/Roadmap.svg";
+import Referralimg from "../../Images/Referral.svg";
+import Stakingimg from "../../Images/Staking.svg";
+import Votingimg from "../../Images/Voting.svg";
+import Orcaimg from "../../Images/Orca.svg"
+import Metamask from "../Metamask"
 
-import GitHubimg from "../Images/Docs/GitHub.svg";
-import ReadMeimg from "../Images/Docs/ReadMe.svg";
+import GitHubimg from "../../Images/Docs/GitHub.svg";
+import ReadMeimg from "../../Images/Docs/ReadMe.svg";
 
-import Submitimg from "../Images/Voting/Submit.svg"
-import Activeimg from "../Images/Voting/Active.svg"
-import Historicalimg from "../Images/Voting/Historical.svg"
-import Filterimg from "../Images/Voting/Filter.svg"
-import Sortimg from "../Images/Voting/Sort.svg"
-import Upimg from "../Images/Voting/Up.svg"
-import Downimg from "../Images/Voting/Down.svg"
+import Submitimg from "../../Images/Voting/Submit.svg"
+import Activeimg from "../../Images/Voting/Active.svg"
+import Historicalimg from "../../Images/Voting/Historical.svg"
+import Filterimg from "../../Images/Voting/Filter.svg"
+import Sortimg from "../../Images/Voting/Sort.svg"
+import Upimg from "../../Images/Voting/Up.svg"
+import Downimg from "../../Images/Voting/Down.svg"
 
-import RefLinkimg from "../Images/Referral/RefLink.svg"
-import InvYourFriendsimg from "../Images/Referral/InvYourFriends.svg"
-import Cryptoimg from "../Images/Referral/Crypto.svg"
+import RefLinkimg from "../../Images/Referral/RefLink.svg"
+import InvYourFriendsimg from "../../Images/Referral/InvYourFriends.svg"
+import Cryptoimg from "../../Images/Referral/Crypto.svg"
 //import { getGlobal, setGlobal} from '../Functions/globalContext.ts'
 
 export let images = [

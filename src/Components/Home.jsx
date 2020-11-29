@@ -3,7 +3,7 @@ import "../Casscade style-sheet/Components.css"
 import Icon from "./Icon"
 import TopBar from "./TopBar"
 import EtherIcon from "../Images/EtherIcon.svg"
-import { images } from "./Window"
+import { images } from "./Window/Main"
 
 let currency = {
     img: EtherIcon,
