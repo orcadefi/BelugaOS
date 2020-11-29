@@ -25,10 +25,15 @@ import ReadMeimg from "../Images/Docs/ReadMe.svg";
 import Submitimg from "../Images/Voting/Submit.svg"
 import Activeimg from "../Images/Voting/Active.svg"
 import Historicalimg from "../Images/Voting/Historical.svg"
+import Filterimg from "../Images/Voting/Filter.svg"
+import Sortimg from "../Images/Voting/Sort.svg"
+import Upimg from "../Images/Voting/Up.svg"
+import Downimg from "../Images/Voting/Down.svg"
 
 import RefLinkimg from "../Images/Referral/RefLink.svg"
 import InvYourFriendsimg from "../Images/Referral/InvYourFriends.svg"
 import Cryptoimg from "../Images/Referral/Crypto.svg"
+//import { getGlobal, setGlobal} from '../Functions/globalContext.ts'
 
 export let images = [
     { object: Docsimg, label: "Docs", id: 1, top_label: "Beluga Porject" },
@@ -85,12 +90,8 @@ class WindowVoting extends React.Component {
         this.state = {
             label: this.props.label
         };
-        this.githubFunction = this.githubFunction.bind(this);
     }
 
-    githubFunction() {
-        window.open('https://github.com/orcadefi/BelugaOS', '_blank');
-    }
 
     render() {
         let DocsData = [
@@ -284,11 +285,14 @@ class WindowSubmitProposal extends React.Component {
     render() {
         return (
             <div style={{width: "100%", height: "100%"}}>
-                <div style={{position: "relative", top: "23px", left: "23px", display: "grid", gridTemplateColumns: "100px 100px", gridColumnGap: "50px", gridTemplateRows: "20px 35px", width: "calc(100% - 46px)"}}>
+                <div style={{position: "relative", top: "23px", left: "23px", display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "50px", gridTemplateRows: "20px 35px", width: "calc(100% - 46px)"}}>
                     <label className="text">Name</label>
                     <label className="text">Expires In</label>
                     <input className="text container" placeholder="Name Here"></input>
-                    <input className="text container" placeholder="000"></input>
+                    <div>
+                        <input className="text container" placeholder="000" style={{ width: "100px", height: "29px" }}></input>
+                        <label className="text textOverflow"> days</label>
+                    </div>
                 </div>
                 <div style={{position: "relative", top: "46px", left: "23px", width: "calc(100% - 50px)"}}>
                     <label className="text">Description</label>
@@ -364,7 +368,8 @@ class WindowHistoricalProposals extends React.Component {
                 title: "Chande Color Scheme",
                 vote: false,
                 time: "2 days",
-                text: loremIpsum,                
+                text: loremIpsum,
+                compact: false
             },
             {
                 id: 1,
@@ -372,6 +377,7 @@ class WindowHistoricalProposals extends React.Component {
                 vote: true,
                 time: "25 days",
                 text: loremIpsum,                
+                compact: true
             },
             {
                 id: 2,
@@ -379,21 +385,24 @@ class WindowHistoricalProposals extends React.Component {
                 vote: false,
                 time: "30 days",
                 text: loremIpsum,                
+                compact: true
             }
         ]
         return (
             <div style={{width: "100%", height: "100%"}}>
                 <div style={{ width: "100%", height: "30px", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr", backgroundColor: "white", borderBottom: "solid black 2px" }}>
-                    <div style={{borderRight: "solid black 1px"}}>
-
+                    <div style={{borderRight: "solid black 1px", display: "flex", justifyContent: "center" }}>
+                        <img src={Filterimg} alt="Filter"/>
+                        <label className="text" style={{paddingTop: "5px"}}>  Filter</label>
                     </div>
-                    <div style={{borderLeft: "solid black 1px"}}>
-
+                    <div style={{borderLeft: "solid black 1px", display: "flex", justifyContent: "center" }}>
+                        <img src={Sortimg} alt="Sort"/>
+                        <label className="text" style={{paddingTop: "5px"}}>  Sort By</label>
                     </div>
                 </div>
                 <div style={{ width: "100%", height: "12px", backgroundColor: "#bcbec0", borderBottom: "solid black 2px" }}></div>
                 {HistoricalProposals.map((data) =>
-                    <PostProposalReview id={data.id} title={data.title} vote={data.vote} time={data.time} text={data.text} />
+                    <PostProposalReview id={data.id} title={data.title} vote={data.vote} time={data.time} text={data.text} compact={data.compact}/>
                 )}
             </div>
         )
@@ -426,7 +435,10 @@ class PostProposalReview extends React.Component {
                 <div style={{ position: "relative", left: "23px", width: "calc(100% - 46px)", height: "45px" , overflow: "hidden", fontSize: "11px", top: "23px"}}>
                     <p className="text">{this.state.text}</p>
                 </div>
-                <div style={{position: "relative", width: "100%", height: "25px", bottom: "0px", borderTop: "solid black 2px", backgroundColor: "white", top: "27px"}}></div>
+                <div style={{ position: "relative", width: "100%", height: "25px", bottom: "0px", borderTop: "solid black 2px", backgroundColor: "white", top: "27px", display: "flex", justifyContent: "center" }}>
+                    <img style={{position: "relative", top: "-3px"}} src={this.state.compact ? Downimg : Upimg} alt={this.state.compact ? "Compacted" : "Expanded" }/>
+                </div>
+                <div style={{ width: "100%", height: "5px", backgroundColor: "#bcbec0", borderTop: "solid black 2px", top: "20px", position: "relative" }}></div>
             </div>
         );
     }
@@ -514,8 +526,8 @@ export default class Window extends React.Component {
 
     updateWindowDimensions() {
         let rdiv = document.getElementById("window-resizable-" + this.state.label)
-        let right = window.innerWidth - parseInt(rdiv.style.width);
-        let bottom = window.innerHeight - parseInt(rdiv.style.height);
+        let right = window.innerWidth - parseInt(rdiv.children[0].style.width);
+        let bottom = window.innerHeight - parseInt(rdiv.children[0].style.height);
         this.setState({
             right_bound: right,
             bottom_bound: bottom,

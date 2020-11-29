@@ -1,6 +1,8 @@
 import React from 'react';
 import "../Casscade style-sheet/Components.css"
 import getWeb3 from "../Functions/getWeb3"
+//import { getGlobal, setGlobal} from '../Functions/globalContext.ts'
+//const HEROKU_NO_CORS = require('HEROKU_NO_CORS');
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 
@@ -20,6 +22,11 @@ class Metamask extends React.Component {
         this.getChallenge = this.getChallenge.bind(this);
         this.signChallenge = this.signChallenge.bind(this);
         this.verifySignature = this.verifySignature.bind(this);
+        this.example = this.example.bind(this);
+    }
+
+    example = () => {
+
     }
 
     getAccounts = async () => {
@@ -28,6 +35,8 @@ class Metamask extends React.Component {
 
     getChallenge = async () => {
         const { accounts } = this.state;
+
+        console.log(HEROKU_NO_CORS)
         const res = await fetch(
             HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${accounts[0].toLowerCase()}`
         );
@@ -92,7 +101,7 @@ class Metamask extends React.Component {
                 <button className="Login-button Login-mm" onClick={this.handleClick}>
                     {this.state.loading ? 'Loading...' : (this.state.accounts !== null ? this.state.accounts[0] : 'Login with MetaMask')}
                 </button>
-                <button className="Login-button Login-mm" onClick={this.verifySignature}>
+                <button className="Login-button Login-mm" onClick={this.example}>
                     Example
                 </button>
             </div>
