@@ -233,7 +233,7 @@
     cursor: move;
 }
 
-[id^="div-icon-created-"] {
+[id^="div-window-"] {
     position: absolute;
     top: 0px;
     width: 100px;

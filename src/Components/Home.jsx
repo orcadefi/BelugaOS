@@ -3,12 +3,13 @@ import "../Casscade style-sheet/Components.css"
 import Icon from "./Icon"
 import TopBar from "./TopBar"
 import EtherIcon from "../Images/EtherIcon.svg"
-import { images } from "./Window/Main"
+import {images} from "../Components/Constant.jsx"
 
-let currency = {
+const currency = {
     img: EtherIcon,
     label: "ETH"
 }
+
 
 class Home extends React.Component {
 
@@ -25,7 +26,7 @@ class Home extends React.Component {
                 <TopBar id="topbar" imgcurrency={currency.img} alt={currency.label} currency={currency.label}/>
                 <div className="images-div">
                     {images.map((data) =>
-                        <Icon windowZ={this.state.windowZ} divName="-home" key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} top_label={data.top_label} function={data.function}/>
+                        <Icon windowZ={this.state.windowZ} divName="-home" key={data.id} src={data.object} alt={data.label} label={data.label} action={data.action}/>
                     )}
                 </div>
             </div>
