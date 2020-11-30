@@ -15,6 +15,8 @@ import * as Roadmap from './Roadmap.jsx';
 import * as Mail from './Mail.jsx';
 import * as Profile from './Profile.jsx';
 
+import { windowIDs } from '../Constant.jsx';
+
 //import { getGlobal, setGlobal} from '../Functions/globalContext.ts'
 
 export let translation = {
@@ -61,14 +63,15 @@ export class Window extends React.Component {
 
     updateZIndex() {
         let divs = []
-        for (let i = 1; i <= translation.length; i = i + 1) {
-            let divToPush = document.getElementById("window-resizable-" + translation[i]['label'])
+        let size = Object.keys(windowIDs).length;
+        for (let i = 1; i <= size; i = i + 1) {
+            let divToPush = document.getElementById("window-resizable-" + i)
             if (divToPush !== null) {
                 divs.push(divToPush)
             }
         }
         const max = divs.length + 1;
-        const actualDiv = document.getElementById("window-resizable-" + this.state.label);
+        const actualDiv = document.getElementById("window-resizable-" + this.state.id);
         let tempval = 0;
         if (actualDiv != null) {
             tempval = actualDiv.style.zIndex
@@ -76,7 +79,7 @@ export class Window extends React.Component {
         const actualZindex = tempval;
         if (actualZindex !== 0) {
             for (let i = 0; i < divs.length; i = i + 1) {
-                if (divs[i].style.zIndex > actualZindex && divs[i].id !== ("window-resizable-" + this.state.label)) {
+                if (divs[i].style.zIndex > actualZindex && divs[i].id !== ("window-resizable-" + this.state.id)) {
                     divs[i].style.zIndex = divs[i].style.zIndex - 1;
                 }
             }
@@ -90,7 +93,7 @@ export class Window extends React.Component {
 
     componentDidMount() {
         let thisDiv = ReactDOM.findDOMNode(this);
-        thisDiv.id = ("window-resizable-" + this.state.label)
+        thisDiv.id = ("window-resizable-" + this.state.id)
         thisDiv.style.position = "fixed"
 
         this.updateWindowDimensions();
@@ -98,7 +101,7 @@ export class Window extends React.Component {
     }
 
     updateWindowDimensions() {
-        let rdiv = document.getElementById("window-resizable-" + this.state.label)
+        let rdiv = ReactDOM.findDOMNode(this);
         let right = window.innerWidth - parseInt(rdiv.children[0].style.width);
         let bottom = window.innerHeight - parseInt(rdiv.children[0].style.height);
         this.setState({
@@ -107,10 +110,11 @@ export class Window extends React.Component {
             max_width_size: window.innerWidth,
             max_height_size: window.innerHeight - 40
         })
+        this.updateZIndex();
     }
 
     updateWindowLimit() {
-        let rdiv = document.getElementById("window-resizable-" + this.state.label)
+        let rdiv = ReactDOM.findDOMNode(this);
         let style_data = window.getComputedStyle(rdiv);
         let matrix = style_data.transform || style_data.webkitTransform || style_data.mozTransform
         let matrixType = matrix.includes('3d') ? '3d' : '2d'
