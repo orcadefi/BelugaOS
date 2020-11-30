@@ -22,14 +22,14 @@ export class WindowVoting extends React.Component {
 
     render() {
         let DocsData = [
-            { object: Submitimg, label: "Submit Proposal", id: 13 },
-            { object: Activeimg, label: "Active Proposals", id: 14 },
-            { object: Historicalimg, label: "Historical Propoals", id: 15 }
+            { object: Submitimg, label: "Submit Proposal", id: 13 , action: 4},
+            { object: Activeimg, label: "Active Proposals", id: 14, action: 5 },
+            { object: Historicalimg, label: "Historical Propoals", id: 15, action: 6 }
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(auto, 100px)" }}>
                 {DocsData.map((data) =>
-                    <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} top_label={data.label} />
+                    <Icon divName="-Voting" key={data.id} src={data.object} alt={data.label} label={data.label} action={data.action}/>
                 )}
             </div>
         )

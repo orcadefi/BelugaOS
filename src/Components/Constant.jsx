@@ -34,7 +34,7 @@ export const images = [
     { object: Roadmapimg, label: "Roadmap", id: 7, action: 23 },
     { object: Mailimg, label: "Mail", id: 8, action: 24 },
     { object: Profileimg, label: "Profile", id: 9, action: 25 },
-    { object: Orcaimg, label: "Orca", id: 10, top_label: "Orca", action: function orca() { window.open('http://orcadefi.com/', '_blank') }}
+    { object: Orcaimg, label: "Orca", id: 10, action: function orca() { window.open('http://orcadefi.com/', '_blank') }}
 ]
 
 export const windowIDs = {

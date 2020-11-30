@@ -11,30 +11,18 @@ export class WindowDocs extends React.Component {
         this.state = {
             label: this.props.label
         };
-        this.githubFunction = this.githubFunction.bind(this);
-    }
-
-    static getLabel = () => {
-        return "Beluga Project"
-    }
-
-    static getID = () => {
-        return 1;
-    }
-
-    githubFunction() {
-        window.open('https://github.com/orcadefi/BelugaOS', '_blank');
     }
 
     render() {
         let DocsData = [
-            { object: GitHubimg, label: "Github", id: 11, func: this.githubFunction },
-            { object: ReadMeimg, label: "Read Me", id: 12 }
+            
+            { object: GitHubimg, label: "Github", id: 11, action: function orca() { window.open('https://github.com/orcadefi/BelugaOS', '_blank') }},
+            { object: ReadMeimg, label: "Read Me", id: 12, action: 2}
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(2, 100px)" }}>
                 {DocsData.map((data) =>
-                    <Icon divName="-window" function={data.func} key={data.id} src={data.object} alt={data.label} label={data.label} id={data.id} top_label={data.label} />
+                    <Icon divName="-Docs" key={data.id} src={data.object} alt={data.label} label={data.label} action={data.action}/>
                 )}
             </div>
         )

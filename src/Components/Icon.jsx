@@ -24,7 +24,6 @@ class Icon extends React.Component {
     }
 
     render() {
-        //<div id={"id-" + this.props.id} className={"icon-div" + this.state.divName} onClick={this.state.action}>
         return (
             <div id={"id-" + this.props.id} className={"icon-div" + this.state.divName} onClick={() => (typeof this.state.action === "function" ? this.state.action() : createWindow(this.state.action, windowIDs[this.state.action]))}>
                 <img src={this.props.src} alt={this.props.alt} className="icon-img"></img>
