@@ -20,8 +20,6 @@ import * as  Roadmap from './Window/Roadmap.jsx';
 import * as  Mail from './Window/Mail.jsx';
 import * as  Profile from './Window/Profile.jsx';
 
-import createWindow from "../Functions/createWindow.ts";
-
 export const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisi eros, ullamcorper a vestibulum at, fringilla quis neque. Mauris id metus ac tortor dapibus consectetur ac eu lectus. Sed at tortor eu nulla pellentesque egestas. Donec pellentesque at nulla et hendrerit. Curabitur sit amet urna eget elit pharetra varius. Nam viverra enim et libero pellentesque bibendum."
 
 export const images = [
@@ -38,34 +36,34 @@ export const images = [
 ]
 
 export const windowIDs = {
-    1: <Window windowZ={40} label="Beluga Project" id={1} widget={<Docs.WindowDocs/>}/>,
-    2: <Window windowZ={40} label="Read Me" id={2} widget={<Docs.WindowReadMe/>}/>,
-    3: <Window windowZ={40} label="Voting" id={3} widget={<Voting.WindowVoting/>}/>,
-    4: <Window windowZ={40} label="Submit Proposal" id={4} widget={<Voting.WindowSubmitProposal/>}/>,
-    5: <Window windowZ={40} label="Active Proposals" id={5} widget={<Voting.WindowActiveProposals/>}/>,
-    6: <Window windowZ={40} label="Post Proposals" id={6} widget={<Voting.WindowHistoricalProposals/>}/>,
+    1: {label: "Beluga Project", id: 1, element: <Docs.WindowDocs/>},
+    2: {label: "Read Me", id: 2, element: <Docs.WindowReadMe/>},
+    3: {label: "Voting", id: 3, element: <Voting.WindowVoting/>},
+    4: {label: "Submit Proposal", id: 4, element: <Voting.WindowSubmitProposal/>},
+    5: {label: "Active Proposals", id: 5, element: <Voting.WindowActiveProposals/>},
+    6: {label: "Post Proposals", id: 6, element: <Voting.WindowHistoricalProposals/>},
     7: "<Voting.WindowError/>",
-    8: <Window windowZ={40} label="Stake Your BBI" id={8} widget={<Staking.WindowStaking/>}/>,
-    9: <Window windowZ={40} label="Lend" id={9} widget={<Lend.WindowLend/>}/>,
-    10: "<Lend.Window/>",
-    11: "<Lend.Window/>",
-    12: "<Lend.Window/>",
-    13: "<Lend.Window/>",
-    14: "<Lend.Window/>",
-    15: <Window windowZ={40} label="Referral Program" id={15} widget={<Referral.WindowReferral/>}/>,
-    16: <Window windowZ={40} label="Borrow" id={16} widget={<Borrow.WindowBorrow/>}/>,
+    8: {label: "Stake Your BBI", id: 8, element: <Staking.WindowStaking/>},
+    9: {label: "Lend", id: 9, element: <Lend.WindowLend/>},
+    10: {label: "Projects Looking for Funding", id: 10, element: <Lend.WindowLendLooking/>},
+    11: {label: "Active Projects", id: 11, element: <Lend.WindowLendActive/>},
+    12: {label: "Previous Loans", id: 12, element: <Lend.WindowLendPrevious/>},
+    13: { label: "Stats", id: 13, element: <Lend.WindowLendStats /> },
+    14: {label:"User Performing Loan", id:14, element:<Lend.WindowLendUserPerforming/>},
+    15: {label:"Referral Program", id:15, element:<Referral.WindowReferral/>},
+    16: {label:"Borrow", id:16, element:<Borrow.WindowBorrow/>},
     17: "<Borrow.Window/>",
     18: "<Borrow.Window/>",
     19: "<Borrow.Window/>",
     20: "<Borrow.Window/>",
     21: "<Borrow.Window/>",
     22: "<Borrow.Window/>",
-    23: <Window windowZ={40} label="---" id={23} widget={<Roadmap.WindowRoadmap/>}/>,
-    24: <Window windowZ={40} label="Email" id={24} widget={<Mail.WindowMail/>}/>,
-    25: <Window windowZ={40} label="Profile" id={25} widget={<Profile.WindowProfile/>}/>,
-    26: "<Profile.Window/>",
-    27: "<Profile.Window/>",
-    28: "<Profile.Window/>",
-    29: "<Profile.Window/>",
+    23: {label:"---", id:23, element:<Roadmap.WindowRoadmap/>},
+    24: {label:"Email", id:24, element:<Mail.WindowMail/>},
+    25: {label:"Profile", id:25, element:<Profile.WindowProfile/>},
+    26: {label:"Messages", id:26, element:<Profile.WindowMessages/>},
+    27: {label:"Verified Identity", id:27, element:<Profile.WindowVerifyIdentity/>},
+    28: {label:"Borrow History", id:28, element:<Profile.WindowBorrowHistory/>},
+    29: {label:"Lend History", id:29, element:<Profile.WindowLendHistory/>},
     30: "<Profile.Window/>",
 };

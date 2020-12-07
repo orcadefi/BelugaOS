@@ -1,5 +1,10 @@
 import React from 'react'
 import Icon from '../Icon'
+import ReactDOM from 'react-dom';
+
+import { addWindow } from '../../Functions/addWindow.jsx'
+import { windowIDs } from '../Constant.jsx';
+import createWindow from '../../Functions/createWindow.ts';
 
 import Submitimg from "../../Images/Voting/Submit.svg"
 import Activeimg from "../../Images/Voting/Active.svg"
@@ -19,17 +24,54 @@ export class WindowVoting extends React.Component {
         };
     }
 
+    changeWindow = (action) => {
+        let ldiv = ReactDOM.findDOMNode(this).parentNode.parentNode.parentNode;
+        let rdiv = ldiv.parentNode;
+        let style_data = window.getComputedStyle(rdiv);
+        let matrix = style_data.transform || style_data.webkitTransform || style_data.mozTransform
+        let matrixType = matrix.includes('3d') ? '3d' : '2d'
+        let matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
+        let x, y = 0
+        if (matrixType === '2d') {
+            x = matrixValues[4]
+            y = matrixValues[5]
+        }
+        if (matrixType === '3d') {
+            x = matrixValues[12]
+            y = matrixValues[13]
+        }
+
+        try {
+            x = parseInt(x, 10);
+        } catch ( error ) { }
+        try {
+            y = parseInt(y, 10);
+        } catch (error) { }
+        let w;
+        let h;
+        try {
+            w = parseInt(ldiv.style.width, 10);
+        } catch ( error ) { }
+        try {
+            h = parseInt(ldiv.style.height, 10);
+        } catch (error) { }
+        let windowToCreate = addWindow(windowIDs[action], w, h, x, y);
+        createWindow(action, windowToCreate)
+        let thisDiv = ReactDOM.findDOMNode(this).parentNode.parentNode.parentNode.parentNode.parentNode;
+        thisDiv.parentNode.removeChild(thisDiv)
+    }
+
 
     render() {
-        let DocsData = [
+        let VotingData = [
             { object: Submitimg, label: "Submit Proposal", id: 13 , action: 4},
             { object: Activeimg, label: "Active Proposals", id: 14, action: 5 },
             { object: Historicalimg, label: "Historical Propoals", id: 15, action: 6 }
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(auto, 100px)" }}>
-                {DocsData.map((data) =>
-                    <Icon divName="-Voting" key={data.id} src={data.object} alt={data.label} label={data.label} action={data.action}/>
+                {VotingData.map((data) =>
+                    <Icon divName="-window" key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)}/>
                 )}
             </div>
         )
@@ -64,7 +106,7 @@ export class WindowActiveProposals extends React.Component {
 
     singleProposal(id, title, expires, text) {
         return (
-            <div style={{width: "100%", height: "140px", borderBottom: "solid black 2px"}}>
+            <div key={id} style={{width: "100%", height: "140px", borderBottom: "solid black 2px"}}>
                 <div style={{ position: "relative", top: "7px", left: "23px", width: "calc(100% - 46px)" }}>
                     <label className="text" style={{display: "block", textAlign: "end", fontSize: "11px"}}>Expires in</label>
                 </div>
@@ -157,7 +199,7 @@ export class WindowHistoricalProposals extends React.Component {
                 </div>
                 <div style={{ width: "100%", height: "12px", backgroundColor: "#bcbec0", borderBottom: "solid black 2px" }}></div>
                 {HistoricalProposals.map((data) =>
-                    <PostProposalReview id={data.id} title={data.title} vote={data.vote} time={data.time} text={data.text} compact={data.compact}/>
+                    <PostProposalReview key={data.id} id={data.id} title={data.title} vote={data.vote} time={data.time} text={data.text} compact={data.compact}/>
                 )}
             </div>
         )
@@ -179,7 +221,7 @@ class PostProposalReview extends React.Component {
 
     render() {
         return (
-            <div style={{width: "100%", height: "150px", borderBottom: "solid black 2px"}}>
+            <div key={this.state.id} style={{width: "100%", height: "150px", borderBottom: "solid black 2px"}}>
                 <div style={{ position: "relative", width: "calc(100% - 46px)", height: "33px", top: "23px", left: "23px", display: "grid", gridTemplateColumns: "1fr 50px", gridTemplateRows: "1fr", gridGap: "15px" }}>
                     <label className="text textOverflow" style={{fontSize: "22px"}}>{this.state.title}</label>
                     <label className="text" style={{fontSize: "12px"}}>{this.state.time}</label>

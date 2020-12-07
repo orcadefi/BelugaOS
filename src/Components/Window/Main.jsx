@@ -49,9 +49,9 @@ export class Window extends React.Component {
             label: this.props.label,
             right_bound: window.innerWidth,
             bottom_bound: window.innerHeight,
-            resize_width: 370,
-            resize_height: 300,
-            max_width_size: 370,
+            resize_width: (this.props.sizeW !==  undefined ? this.props.sizeW : 420),
+            resize_height: (this.props.sizeH !==  undefined ? this.props.sizeH : 300),
+            max_width_size: 420,
             max_height_size: 300,
             zIndex: 0
         };
@@ -70,24 +70,32 @@ export class Window extends React.Component {
                 divs.push(divToPush)
             }
         }
-        const max = divs.length + 1;
+        const max = divs.length + 2;
         const actualDiv = document.getElementById("window-resizable-" + this.state.id);
         let tempval = 0;
-        if (actualDiv != null) {
+        if (actualDiv == null) {
+            return;
+        } else {
             tempval = actualDiv.style.zIndex
         }
         const actualZindex = tempval;
-        if (actualZindex !== 0) {
+        if (actualZindex > (divs.length + 2)) {
+            actualDiv.style.zIndex = max
+        }
+        if (actualZindex < (divs.length + 2)) {
             for (let i = 0; i < divs.length; i = i + 1) {
                 if (divs[i].style.zIndex > actualZindex && divs[i].id !== ("window-resizable-" + this.state.id)) {
                     divs[i].style.zIndex = divs[i].style.zIndex - 1;
                 }
             }
             actualDiv.style.zIndex = max
-        } else {
-            this.setState({
-                zIndex: max + 1
-            })
+        }
+        if (actualZindex == (divs.length + 2)) {
+            for (let i = 0; i < divs.length; i = i + 1) {
+                if (divs[i].style.zIndex === actualZindex && divs[i].id !== ("window-resizable-" + this.state.id)) {
+                    divs[i].style.zIndex = divs[i].style.zIndex - 1;
+                }
+            }
         }
     }
 
@@ -96,8 +104,17 @@ export class Window extends React.Component {
         thisDiv.id = ("window-resizable-" + this.state.id)
         thisDiv.style.position = "fixed"
 
+        let divs = []
+        let size = Object.keys(windowIDs).length;
+        for (let i = 1; i <= size; i = i + 1) {
+            let divToPush = document.getElementById("window-resizable-" + i)
+            if (divToPush !== null) {
+                divs.push(divToPush)
+            }
+        }
+        thisDiv.style.zIndex = divs.length + 2;
         this.updateWindowDimensions();
-        this.updateZIndex();
+        this.updateWindowLimit();
     }
 
     updateWindowDimensions() {
@@ -150,7 +167,7 @@ export class Window extends React.Component {
         return (
             <Draggable
                 handle=".window-topbar"
-                defaultPosition={{ x: 0, y: 40 }}
+                defaultPosition={{ x: (this.props.x !==  undefined ? this.props.x : 0), y: (this.props.y !==  undefined ? this.props.y : 40) }}
                 cancel={".react-resizable-handle"}
                 bounds={{ left: 0, top: 40, right: this.state.right_bound, bottom: this.state.bottom_bound }}
                 onStart={() => this.updateWindowDimensions()}
@@ -158,10 +175,10 @@ export class Window extends React.Component {
                 ref={this.draggRef}
             >
                 <div>
-                    <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[370, 300]}
+                    <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[420, 300]}
                         maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
-                        onClick={() => this.updateZIndex()}>
-                        <div style={{width: "100%", height: "100%"}}>
+                    >
+                        <div style={{ width: "100%", height: "100%" }} onClick={() => this.updateZIndex()}>
                             <WindowTopBar label={this.props.label} />
                             <div id={"window-content-" + this.state.label} className="window-content">
                                 {this.state.widget}

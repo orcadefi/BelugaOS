@@ -1,8 +1,10 @@
 import React from 'react';
 import "../Casscade style-sheet/Components.css"
 import getWeb3 from "../Functions/getWeb3"
-//import { getGlobal, setGlobal} from '../Functions/globalContext.ts'
-//const HEROKU_NO_CORS = require('HEROKU_NO_CORS');
+import createWindow from '../Functions/createWindow.ts'
+import { addWindow } from '../Functions/addWindow.jsx'
+import { windowIDs } from './Constant.jsx';
+import { setGlobal, getGlobal } from '../Functions/globalContext.ts'
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 
@@ -26,11 +28,13 @@ class Metamask extends React.Component {
     }
 
     example = () => {
-
+        createWindow(14, addWindow(windowIDs[14]));
     }
 
     getAccounts = async () => {
-        this.setState({ accounts: await (window).ethereum.request({ method: 'eth_requestAccounts' }) });
+        const acc = await (window).ethereum.request({ method: 'eth_requestAccounts' });
+        setGlobal({ account: acc });
+        this.setState({ accounts: acc });
     }
 
     getChallenge = async () => {

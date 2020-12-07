@@ -6,9 +6,9 @@ import Cryptoimg from "../../Images/Referral/Crypto.svg"
 export class WindowReferral extends React.Component {
     render() {
         let imgs = [
-            { image: RefLinkimg, top: '1.Get referral link', data: 'Register and get your unique referral link and code', prop: 'Referral Link' },
-            { image: InvYourFriendsimg, top: '2.Invite Your Friends', data: 'Invite your friends to register via your link or code', prop: 'Invite Your Friends' },
-            { image: Cryptoimg, top: '3.Earn Crypto Together', data: 'You will receive up to $2,000 USD when your friends stake BBI on Beluga Exchange', prop: 'Earn Crypto' }
+            { image: RefLinkimg, top: '1.Get referral link', data: 'Register and get your unique referral link and code', prop: 'Referral Link', id: 0 },
+            { image: InvYourFriendsimg, top: '2.Invite Your Friends', data: 'Invite your friends to register via your link or code', prop: 'Invite Your Friends', id: 1 },
+            { image: Cryptoimg, top: '3.Earn Crypto Together', data: 'You will receive up to $2,000 USD when your friends stake BBI on Beluga Exchange', prop: 'Earn Crypto', id: 2 }
         ]
         return (
             <div style={{ position: "relative", height: "calc(100% - 23px)", width: "calc(100% - 23px)", top: "23px", left: "23px" }}>
@@ -22,7 +22,7 @@ export class WindowReferral extends React.Component {
                 <p className="text heading3">How it Works</p>
                 <div className="referral-grid-2">
                     {imgs.map((data) =>
-                        <RefInstructions image={data.image} top={data.top} data={data.data}/>
+                        <RefInstructions key={data.id} image={data.image} top={data.top} data={data.data} />
                     )}
                 </div>
                 <p className="text heading3">Bonus Calculation</p>
@@ -37,12 +37,12 @@ class RefInstructions extends React.Component {
     render() {
         return (
             <div className="text ref-works">
-                <img src={this.props.image} style={{ width: "100%" }} alt={this.props.top}/>
-                            <div className="vertical-grid">
-                                <p className="heading3 text no-space" style={{fontSize: "10px"}}>{this.props.top}</p>
-                                <p className="heading3 text no-space" style={{ fontSize: "8px" }}>{this.props.data}</p>
-                            </div>
-                        </div>
+                <img src={this.props.image} style={{ width: "100%" }} alt={this.props.top} />
+                <div className="vertical-grid">
+                    <p className="heading3 text no-space" style={{ fontSize: "10px" }}>{this.props.top}</p>
+                    <p className="heading3 text no-space" style={{ fontSize: "8px" }}>{this.props.data}</p>
+                </div>
+            </div>
         )
     }
 }
