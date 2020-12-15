@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom'
 import { addWindow } from '../../Functions/addWindow.jsx'
 import { windowIDs } from '../Constant.jsx';
 import createWindow from '../../Functions/createWindow.ts';
+import * as globalContext from '../../Functions/globalContext.ts';
+import getWeb3 from "../../Functions/getWeb3"
 
-import Metamask from "../Metamask"
 import Icon from "../Icon"
 
 import BorrowHistoryimg from "../../Images/Profile/BorrowHistory.svg"
@@ -15,7 +16,109 @@ import VerifiedIdentityimg from "../../Images/Profile/VerifiedIdentity.svg"
 import anonymousimg from "../../Images/Lend/anonymous.svg"
 import LendUserimg from "../../Images/Lend/User.svg"
 
+import Emojiimg from "../../Images/Profile/Emoji.svg"
+import Clipimg from "../../Images/Profile/Clip.svg"
+import NextArrowimg from "../../Images/NextArrow.svg"
+import Checkedboximg from "../../Images/Checkedbox.svg"
+import Uncheckedboximg from "../../Images/Uncheckedbox.svg"
+import Checkimg from "../../Images/Check.svg"
+import Imgicoimg from "../../Images/imgico.svg"
+import Verifiedimg from "../../Images/Verified.svg"
+
+import {usersRegister} from "../../Functions/APIFetch.ts"
+
+const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
+
 export class WindowProfile extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            challenge: undefined,
+            signature: undefined
+        }
+        const accounts = globalContext.getGlobal('account');
+        const token = globalContext.getGlobal('token');
+        if (accounts === undefined || token === undefined) {
+            this.connect();
+        }
+    }
+
+    getAccounts = async () => {
+        let acc
+        try {
+            acc = await (window).ethereum.request({ method: 'eth_requestAccounts' });
+        } catch (err) {
+            window.alert("Plese connect metamask")
+            return
+        }
+        globalContext.setGlobal({ account: acc });
+    }
+
+    getChallenge = async () => {
+        const accounts = globalContext.getGlobal('account');
+
+        const res = await fetch(
+            HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${accounts[0].toLowerCase()}`
+        );
+        let resJson = await res.json()
+        this.setState({ challenge: resJson });
+    };
+
+    signChallenge = async () => {
+        const web3 = globalContext.getGlobal('web3')
+        const accounts = globalContext.getGlobal('account');
+        const { challenge } = this.state;
+        let result = null;
+        try {
+            result = await web3.currentProvider.request({ method: "eth_signTypedData", params: [challenge, accounts[0]] })
+        } catch {
+            //TODO
+        }
+        this.setState({ signature: result });
+    };
+
+    verifySignature = async () => {
+        const { challenge, signature } = this.state;
+        const res = await fetch(
+            HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${challenge[1].value}/${signature}`
+        );
+
+        let recovered = null
+        try {
+            recovered = await res.json();
+        } catch {
+            
+        }
+        if (res.status === 200 && recovered.mensaje === "Authentication successful") {
+            console.log("Signature verified");
+            window.alert("Logged in successfully")
+            globalContext.setGlobal({ token: recovered.token });
+        } else {
+            console.log("Signature not verified");
+            window.alert("An error occurred, please try again")
+        }
+    };
+
+    connect = async () => {
+
+        let web3;
+        try {
+            web3 = await getWeb3();
+        } catch (err) {
+            window.alert(err)
+            return
+        }
+        
+        globalContext.setGlobal({ web3: web3 });
+        await this.getAccounts();
+        if(globalContext.getGlobal('account'))
+
+        await this.getChallenge()
+        await this.signChallenge()
+        await this.verifySignature()
+
+    };
 
     changeWindow = (action) => {
         let ldiv = ReactDOM.findDOMNode(this).parentNode.parentNode.parentNode;
@@ -132,6 +235,47 @@ export class WindowMessages extends React.Component {
                 type: 1,
                 message: "Lorem ipsum dolor sit amet"
             },
+            {
+                id: 4,
+                type: 1,
+                message: "Hola"
+            },
+            {
+                id: 5,
+                type: 1,
+                message: "mundo!"
+            },
+            {
+                id: 6,
+                type: 0,
+                message: "Hello"
+            },
+            {
+                id: 7,
+                type: 0,
+                message: "World!"
+            },
+            {
+                id: 8,
+                type: 0,
+                message: "Im friend of Craig"
+            },
+            {
+                id: 9,
+                type: 1,
+                message: "Yeah, thas the english version of Hola mundo"
+            },
+            {
+                id: 10,
+                type: 1,
+                message: "And yes"
+            },
+            {
+                id: 11,
+                type: 1,
+                message: "You're my friend!"
+            },
+
         ]
 
         this.setState({ messages: data });
@@ -144,16 +288,16 @@ export class WindowMessages extends React.Component {
                 <div className="chatUser" style={{ position: "relative", width: "100%", height: "70px", display: "grid", gridTemplateColumns: "75px 1fr", gap: "5px" }}>
                     <div style={{ width: "75px", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                         <div style={{ width: "55px", height: "55px", border: "solid white 2px", borderRadius: "50%", overflow: "hidden" }}>
-                            <img alt="Userphoto" src={data.image !== undefined ? data.image : anonymousimg} style={{width: "55px", height: "55px"}}>
+                            <img alt="Userphoto" src={data.image !== undefined ? data.image : anonymousimg} style={{ width: "55px", height: "55px" }}>
                             </img>
                         </div>
                     </div>
-                    <div style={{alignSelf: "center"}}>
+                    <div style={{ alignSelf: "center" }}>
                         <label className="text">
                             {data.name}
                         </label>
-                        <br/>
-                        <label className="text" style={{fontSize: "10px", display: "inline-block", maxHeight: "28px", overflow: "hidden"}}>
+                        <br />
+                        <label className="text" style={{ fontSize: "10px", display: "inline-block", maxHeight: "28px", overflow: "hidden" }}>
                             {data.last}
                         </label>
                     </div>
@@ -164,10 +308,12 @@ export class WindowMessages extends React.Component {
 
     messagesDiv = (id) => {
         return (
-            <div>
+            <div style={{ position: "relative", top: "15px", width: "100%", height: "calc(100% - 15px)" }}>
                 {this.state.messages.map((data) =>
-                    <div>
-                        {data.message}
+                    <div style={{ width: "100%", height: "fit-content", overflow: "hidden" }}>
+                        <div className={data.type === 0 ? "receivedMessage" : "sentMessage"}>
+                            {data.message}
+                        </div>
                     </div>
                 )}
             </div>
@@ -181,14 +327,22 @@ export class WindowMessages extends React.Component {
 
     render() {
         return (
-            <div style={{ position: "relative", width: "100%", height: "100%", display: "grid", gridTemplateColumns: "2fr 3fr" }}>
-                <div style={{position: "relative", width: "100%", height: "100%", borderRight: "solid black 2px"}}>
-                    <div style={{ position: "relative", width: "100%", height: "calc(100% - 10px)", overflowY: "auto", top: "8px"}}>
+            <div style={{ position: "relative", width: "100%", height: "100%", display: "grid", gridTemplateColumns: "2fr 3fr", gridTemplateRows: "100%" }}>
+                <div style={{ position: "relative", width: "100%", height: "100%", borderRight: "solid black 2px", overflowY: "auto" }}>
+                    <div style={{ position: "relative", width: "100%", height: "calc(100% - 10px)", top: "8px" }}>
                         {this.userDiv()}
                     </div>
                 </div>
-                <div style={{ position: "relative", width: "100%", height: "100%", overflowY: "auto" }}>
-                    {this.messagesDiv()}
+                <div style={{ position: "relative", width: "100%", height: "100%", display: "grid", gridTemplateColumns: "1fr", gridTemplateRows: "1fr 24px", backgroundColor: "#d1d3d4" }}>
+                    <div style={{ width: "100%", height: "100%", overflowX: "auto" }}>
+                        {this.messagesDiv()}
+                    </div>
+                    <div style={{ position: "relative", width: "calc(100% - 24px)", borderTop: "solid black 2px", height: "22px", display: "grid", gridTemplateColumns: "30px 15px 1fr 55px", gridTemplateRows: "1fr", backgroundColor: "#f1f2f2" }}>
+                        <img alt="emoji" src={Emojiimg} style={{ height: "75%", alignSelf: "center", justifySelf: "center" }} />
+                        <img alt="file" src={Clipimg} style={{ height: "75%", alignSelf: "center", justifySelf: "center" }} />
+                        <input className="text input-messager" style={{ backgroundColor: "transparent" }} placeholder="Type Message" />
+                        <input className="text input-submit" type="submit" value="SEND" style={{}} />
+                    </div>
                 </div>
             </div>
         )
@@ -198,26 +352,164 @@ export class WindowMessages extends React.Component {
 
 export class WindowVerifyIdentity extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            step: 3,
+            checkPhone: false,
+        }
+    }
+
+    submit = async () => {
+        //submit data
+        console.log(await usersRegister());
+        //this.nextStep();
+    }
+
+    nextStep = (data) => {
+        let nextStep = this.state.step + 1;
+        if (nextStep > 0 && nextStep < 5) {
+            this.setState({ step: nextStep })
+        } else {
+            this.setState({ step: 1 })
+        }
+    }
+
     readStep = () => {
-        return 1;
+        if (this.state.step === 1) {
+            return this.stepOne();
+        } else if (this.state.step === 2) {
+            return this.stepTwo();
+        } else if (this.state.step === 3) {
+            return this.stepThree();
+        } else if (this.state.step === 4) {
+            return this.submitView();
+        } else {
+            this.setState({step: 1})
+            return this.stepOne();
+        }
     }
 
     stepOne = () => {
-
+        return (
+            <div style={{ position: "relative", width: "calc(100% - 23px)", height: "100%" }}>
+                <div style={{ position: "relative", width: "calc(100% - 23px)", height: "44px", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", rowGap: "4px", columnGap: "36px" }}>
+                    <label className="text" style={{ fontSize: "14px" }}>First Name</label>
+                    <label className="text" style={{ fontSize: "14px" }}>Last Name</label>
+                    <input className="text" placeholder="First Name" style={{ backgroundColor: "#bcbec0", border: "solid black 2px" }} />
+                    <input className="text" placeholder="Last Name" style={{ backgroundColor: "#bcbec0", border: "solid black 2px" }} />
+                </div>
+                <div style={{ position: "relative", top: "30px" }}>
+                    <label className="text" style={{ fontSize: "14px" }}>Date of Birth</label>
+                    <div style={{ position: "relative", width: "calc(100% - 23px)", height: "25px", display: "grid", gridTemplateColumns: "calc(8px + 3ch) 2ch calc(8px + 3ch) 2ch calc(8px + 6ch)", gridTemplateRows: "1fr", textAlign: "center" }}>
+                        <input className="text" placeholder="DD" style={{ backgroundColor: "#bcbec0", border: "solid black 2px", width: "calc(100% -4px)", height: "calc(100% -4px)", textAlign: "center" }} />
+                        <label className="text">/</label>
+                        <input className="text" placeholder="MM" style={{ backgroundColor: "#bcbec0", border: "solid black 2px", width: "calc(100% -4px)", height: "calc(100% -4px)", textAlign: "center" }} />
+                        <label className="text">/</label>
+                        <input className="text" placeholder="YYYY" style={{ backgroundColor: "#bcbec0", border: "solid black 2px", width: "calc(100% -4px)", height: "calc(100% -4px)", textAlign: "center" }} />
+                    </div>
+                </div>
+                <div className="activeButton" onClick={() => this.nextStep()} style={{ position: "relative", top: "30px", float: "right", right: "25px", width: "70px", height: "20px", textAlign: "center" }}>
+                    <label className="text" style={{ fontSize: "14px" }}>Next</label>
+                    <img alt="next" src={NextArrowimg} style={{ width: "20px", height: "12px" }} />
+                </div>
+                <div style={{ position: "fixed", width: "calc(100% - 74px)", height: "42px", bottom: "23px" }}>
+                    <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "14px 14px 10px" }}>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "1", gridRow: "1" }}>Step 1</label>
+                        <div style={{ width: "calc(100% - 4px)", height: "calc(100% - 4px)", gridColumn: "1", gridRow: "3", backgroundColor: "#f2be48", border: "solid black 2px" }}></div>
+                        <div style={{ width: "calc(100% - 2px)", height: "calc(100% - 4px)", gridColumn: "2 / 4", gridRow: "3", backgroundColor: "transparent", border: "solid black 2px", borderLeft: "none" }}></div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     stepTwo = () => {
-
+        return (
+            <div style={{ position: "relative", width: "calc(100% - 23px)", height: "100%" }}>
+                <div style={{ position: "relative", width: "calc(100% - 23px)", height: "49px", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "20px 25px", rowGap: "4px", columnGap: "36px" }}>
+                    <label className="text" style={{ fontSize: "14px" }}>Phone Number</label>
+                    <label className="text" style={{ fontSize: "14px" }}>Verification Code</label>
+                    <input className="text" placeholder="Phone Number" style={{ backgroundColor: "#bcbec0", border: "solid black 2px" }} />
+                    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center" }}>
+                        <input className="text" style={{ backgroundColor: "#bcbec0", border: "solid black 2px", width: "calc(100% - 33px)", position: "relative" }} />
+                        <img style={{ marginLeft: "auto", width: "15px", height: "15px" }} alt={this.state.checkPhone ? "checked" : "unchecked"} src={this.state.checkPhone ? Checkedboximg : Uncheckedboximg} />
+                    </div>
+                </div>
+                <div style={{ position: "relative", width: "calc(100% - 23px)", height: "49px", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "20px 25px", rowGap: "4px", columnGap: "36px", top: "20px" }}>
+                    <label className="text" style={{ fontSize: "14px" }}>Email</label>
+                    <label className="text" style={{ fontSize: "14px" }}>Verification Code</label>
+                    <input className="text" placeholder="Email" style={{ backgroundColor: "#bcbec0", border: "solid black 2px" }} />
+                    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center" }}>
+                        <input className="text" style={{ backgroundColor: "#bcbec0", border: "solid black 2px", width: "calc(100% - 33px)", position: "relative" }} />
+                        <img style={{ marginLeft: "auto", width: "15px", height: "15px" }} alt={this.state.checkPhone ? "checked" : "unchecked"} src={this.state.checkPhone ? Checkedboximg : Uncheckedboximg} />
+                    </div>
+                </div>
+                <div className="activeButton" onClick={() => this.nextStep()} style={{ position: "relative", top: "40px", float: "right", right: "25px", width: "70px", height: "20px", textAlign: "center" }}>
+                    <label className="text" style={{ fontSize: "14px" }}>Next</label>
+                    <img alt="next" src={NextArrowimg} style={{ width: "20px", height: "12px" }} />
+                </div>
+                <div style={{ position: "fixed", width: "calc(100% - 74px)", height: "42px", bottom: "23px" }}>
+                    <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "14px 14px 10px" }}>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "1", gridRow: "1" }}>Step 1</label>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "2", gridRow: "1" }}>Step 2</label>
+                        <div style={{ width: "calc(100% - 4px)", height: "calc(100% - 4px)", gridColumn: "1", gridRow: "3", backgroundColor: "#f2be48", border: "solid black 2px", borderLeft: "solid black 2px" }}></div>
+                        <div style={{ width: "calc(100% - 2px)", height: "calc(100% - 4px)", gridColumn: "2", gridRow: "3", backgroundColor: "#f2be48", border: "solid black 2px", borderLeft: "none" }}></div>
+                        <div style={{ width: "calc(100% - 2px)", height: "calc(100% - 4px)", gridColumn: "3", gridRow: "3", backgroundColor: "transparent", border: "solid black 2px", borderLeft: "none" }}></div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     stepThree = () => {
+        return (
+            <div style={{ position: "relative", width: "calc(100% - 23px)", height: "100%" }}>
+                <label className="text" style={{ width: "calc(100% - 23px)" }}>Upload Documents</label>
+                <br />
+                <label className="text" style={{ fontSize: "12px", width: "calc(100% - 23px)" }}>To confirm you are you, please upload image of these following documents</label>
+                <div style={{ position: "relative", width: "calc(100% - 23px)", minHeight: "84px" }}>
+                    <div style={{ position: "relative", width: "100%", height: "100%", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "18px 35px 21px", columnGap: "10px", rowGap: "5px", justifyItems: "center" }}>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "1", gridRow: "1" }}>ID Card</label>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "2", gridRow: "1" }}>Electricity Bill</label>
+                        <div className="regProfileDoc" style={{ gridColumn: "1", gridRow: "2"}}><img style={{ width: "60%", height: "60%", margin: "auto" }} alt="ID" src={Imgicoimg} /></div>
+                        <div className="regProfileDoc" style={{ gridColumn: "2", gridRow: "2"}}><img style={{ width: "60%", height: "60%", margin: "auto" }} alt="ID" src={Imgicoimg} /></div>
+                        <div className="activeButton" onClick={() => this.submit()} style={{ width: "85px", height: "20px", textAlign: "center", marginLeft: "auto", gridColumn: "3", gridRow: "3" }}>
+                            <label className="text" style={{ fontSize: "14px" }}>Submit</label>
+                            <img alt="next" src={Checkimg} style={{ width: "24px", height: "11px" }} />
+                        </div>
+                    </div>
+                </div>
 
+                <div style={{ position: "fixed", width: "calc(100% - 74px)", height: "42px", bottom: "23px" }}>
+                    <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "14px 14px 10px" }}>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "1", gridRow: "1" }}>Step 1</label>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "2", gridRow: "1" }}>Step 2</label>
+                        <label className="text" style={{ textAlign: "center", fontSize: "14px", gridColumn: "3", gridRow: "1" }}>Step 3</label>
+                        <div style={{ width: "calc(100% - 4px)", height: "calc(100% - 4px)", gridColumn: "1", gridRow: "3", backgroundColor: "#f2be48", border: "solid black 2px" }}></div>
+                        <div style={{ width: "calc(100% - 2px)", height: "calc(100% - 4px)", gridColumn: "2", gridRow: "3", backgroundColor: "#f2be48", border: "solid black 2px", borderLeft: "none" }}></div>
+                        <div style={{ width: "calc(100% - 2px)", height: "calc(100% - 4px)", gridColumn: "3", gridRow: "3", backgroundColor: "#f2be48", border: "solid black 2px", borderLeft: "none" }}></div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    submitView = () => {
+        return (
+            <div style={{ position: "relative", width: "calc(100% - 23px)", height: "100%" }}>
+                <div style={{ position: "relative", width: "calc(100% - 23px)", height: "min-content", display: "grid", gridTemplateColumns: "55px 1fr", gridTemplateRows: "1fr", columnGap: "10px" }}>
+                    <img alt="Verified" src={Verifiedimg} style={{width: "80%", height: "80%", alignSelf: "center", justifySelf: "center"}} />
+                    <label className="text" style={{ fontSize: "20px" }}>Thank you for completing registration form</label>
+                </div>
+            </div>
+        )
     }
 
     render() {
         return (
             <div style={{ position: "relative", width: "calc(100% - 23px)", height: "calc(100% - 23px)", top: "23px", left: "23px" }}>
-
+                {this.readStep()}
             </div>
         )
     }

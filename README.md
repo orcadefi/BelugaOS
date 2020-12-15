@@ -1,2 +1,2 @@
-# BelugaOS
-BelugaOS Project
+# OrcaOS
+OrcaOS Project

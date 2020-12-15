@@ -1,100 +1,279 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="21.558mm" height="19.51mm" version="1.1" viewBox="0 0 21.558 19.51" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
- <defs>
-  <clipPath>
-   <path d="m166 153h748v571.11h-748z"/>
-  </clipPath>
-  <clipPath id="clip2">
-   <rect width="1439" height="725"/>
-  </clipPath>
-  <g clip-path="url(#clip2)"></g>
-  <clipPath>
-   <path d="m0 0.67969h1v2.3203h-1z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m6 0.67969h1426v2.3203h-1426z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m0 666h1v2.8398h-1z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m6 666h1426v2.8398h-1426z"/>
-  </clipPath>
-  <clipPath id="clip5">
-   <rect width="1439" height="669"/>
-  </clipPath>
-  <g clip-path="url(#clip5)"></g>
- </defs>
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
- <g transform="translate(-70.205 -114.45)">
-  <g transform="matrix(.35278 0 0 .35278 -471.48 37.782)">
-   <g>
-    <path d="m1535.5 263.04h2.2851v-20.438h-2.2851z"/>
-    <path d="m1543.5 263.04h2.2852v-20.438h-2.2852z"/>
-    <path d="m1543.5 240.32h-5.75v2.2891h5.75z"/>
-    <path d="m1543.5 263.04h-5.75v2.2891h5.75z"/>
-    <path d="m1560.9 263.04h2.2891v-20.438h-2.2891z"/>
-    <path d="m1568.9 263.04h2.2851v-20.438h-2.2851z"/>
-    <path d="m1568.9 240.32h-5.75v2.2891h5.75z"/>
-    <path d="m1568.9 263.04h-5.75v2.2891h5.75z"/>
-    <path d="m1573.6 263.04h2.2852v-26.965h-2.2852z"/>
-    <path d="m1581.6 263.04h2.2851v-26.965h-2.2851z"/>
-    <path d="m1581.6 233.79h-5.75v2.2891h5.75z"/>
-    <path d="m1581.6 263.04h-5.75v2.2891h5.75z"/>
-    <path d="m1586.3 263.04h2.2852v-36.051h-2.2852z"/>
-    <path d="m1594.3 263.04h2.2851v-36.051h-2.2851z"/>
-    <path d="m1594.3 224.7h-5.75v2.2891h5.75z"/>
-    <path d="m1594.3 263.04h-5.75v2.2891h5.75z"/>
-   </g>
-   <path d="m1543.5 263.04h-5.75v-20.434h5.75z" fill="#fff"/>
-   <g>
-    <path d="m1548.2 263.04h2.2851v-28.57h-2.2851z"/>
-    <path d="m1556.2 263.04h2.2891v-28.57h-2.2891z"/>
-    <path d="m1556.2 232.19h-5.7461v2.2852h5.7461z"/>
-    <path d="m1556.2 263.04h-5.7461v2.2891h5.7461z"/>
-   </g>
-   <g fill="#fff">
-    <path d="m1556.2 263.04h-5.7461v-28.57h5.7461z"/>
-    <path d="m1568.9 263.04h-5.75v-20.434h5.75z"/>
-    <path d="m1581.6 263.04h-5.75v-26.961h5.75z"/>
-   </g>
-   <path d="m1594.3 263.04h-5.75v-36.051h5.75z" fill="#f0bd47"/>
-   <g>
-    <path d="m1555.7 226.47h-2.2891v-2.2852h2.2891z"/>
-    <path d="m1557.9 228.75h-2.2851v-2.2852h2.2851z"/>
-    <path d="m1560.2 228.75h-2.2891v-2.2852h2.2891z"/>
-    <path d="m1562.5 231.04h-2.2851v-2.2852h2.2851z"/>
-    <path d="m1564.8 231.04h-2.2852v-2.2852h2.2852z"/>
-    <path d="m1551.1 226.47h2.2891v-2.2852h-2.2891z"/>
-    <path d="m1548.8 228.75h2.2851v-2.2852h-2.2851z"/>
-    <path d="m1546.5 228.75h2.2891v-2.2852h-2.2891z"/>
-    <path d="m1544.2 231.04h2.2851v-2.2852h-2.2851z"/>
-    <path d="m1541.9 231.04h2.2891v-2.2852h-2.2891z"/>
-    <path d="m1539.6 233.33h2.2852v-2.2852h-2.2852z"/>
-    <path d="m1537.4 233.33h2.289v-2.2852h-2.289z"/>
-    <path d="m1587.7 221.89h-2.2891v-2.2852h2.2891z"/>
-    <path d="m1583.1 221.89h2.2851v-2.2852h-2.2851z"/>
-    <path d="m1580.8 224.18h2.2852v-2.2891h-2.2852z"/>
-    <path d="m1578.5 224.18h2.2891v-2.2891h-2.2891z"/>
-    <path d="m1576.2 226.47h2.2851v-2.2852h-2.2851z"/>
-    <path d="m1573.9 226.47h2.2891v-2.2852h-2.2891z"/>
-    <path d="m1590 219.61h2.2891v-2.2891h-2.2891z"/>
-    <path d="m1592.2 219.61h2.289v-2.2891h-2.289z"/>
-    <path d="m1587.7 219.61h2.2851v-2.2891h-2.2851z"/>
-    <path d="m1571.7 228.75h2.2851v-2.2852h-2.2851z"/>
-    <path d="m1569.4 228.75h2.2891v-2.2852h-2.2891z"/>
-    <path d="m1567.1 231.04h2.2851v-2.2852h-2.2851z"/>
-    <path d="m1564.8 231.04h2.2891v-2.2852h-2.2891z"/>
-    <path d="m1596.6 270.34h-61.109v2.2891h61.109z"/>
-   </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="21.558mm"
+   height="19.51mm"
+   version="1.1"
+   viewBox="0 0 21.558 19.51"
+   id="svg150"
+   sodipodi:docname="Staking.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="759"
+     inkscape:window-height="480"
+     id="namedview152"
+     showgrid="false"
+     inkscape:zoom="3.6005574"
+     inkscape:cx="43.652873"
+     inkscape:cy="50.554793"
+     inkscape:window-x="560"
+     inkscape:window-y="120"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg150" />
+  <defs
+     id="defs32">
+    <clipPath
+       id="clipPath4">
+      <path
+         d="m166 153h748v571.11h-748z"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       id="clip2">
+      <rect
+         width="1439"
+         height="725"
+         id="rect6" />
+    </clipPath>
+    <g
+       clip-path="url(#clip2)"
+       id="g9" />
+    <clipPath
+       id="clipPath13">
+      <path
+         d="m0 0.67969h1v2.3203h-1z"
+         id="path11" />
+    </clipPath>
+    <clipPath
+       id="clipPath17">
+      <path
+         d="m6 0.67969h1426v2.3203h-1426z"
+         id="path15" />
+    </clipPath>
+    <clipPath
+       id="clipPath21">
+      <path
+         d="m0 666h1v2.8398h-1z"
+         id="path19" />
+    </clipPath>
+    <clipPath
+       id="clipPath25">
+      <path
+         d="m6 666h1426v2.8398h-1426z"
+         id="path23" />
+    </clipPath>
+    <clipPath
+       id="clip5">
+      <rect
+         width="1439"
+         height="669"
+         id="rect27" />
+    </clipPath>
+    <g
+       clip-path="url(#clip5)"
+       id="g30" />
+  </defs>
+  <metadata
+     id="metadata34">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-70.205 -114.45)"
+     id="g148">
+    <g
+       transform="matrix(.35278 0 0 .35278 -471.48 37.782)"
+       id="g146">
+      <g
+         id="g68">
+        <path
+           d="m1535.5 263.04h2.2851v-20.438h-2.2851z"
+           id="path36" />
+        <path
+           d="m1543.5 263.04h2.2852v-20.438h-2.2852z"
+           id="path38" />
+        <path
+           d="m1543.5 240.32h-5.75v2.2891h5.75z"
+           id="path40" />
+        <path
+           d="m1543.5 263.04h-5.75v2.2891h5.75z"
+           id="path42" />
+        <path
+           d="m1560.9 263.04h2.2891v-20.438h-2.2891z"
+           id="path44" />
+        <path
+           d="m1568.9 263.04h2.2851v-20.438h-2.2851z"
+           id="path46" />
+        <path
+           d="m1568.9 240.32h-5.75v2.2891h5.75z"
+           id="path48" />
+        <path
+           d="m1568.9 263.04h-5.75v2.2891h5.75z"
+           id="path50" />
+        <path
+           d="m1573.6 263.04h2.2852v-26.965h-2.2852z"
+           id="path52" />
+        <path
+           d="m1581.6 263.04h2.2851v-26.965h-2.2851z"
+           id="path54" />
+        <path
+           d="m1581.6 233.79h-5.75v2.2891h5.75z"
+           id="path56" />
+        <path
+           d="m1581.6 263.04h-5.75v2.2891h5.75z"
+           id="path58" />
+        <path
+           d="m1586.3 263.04h2.2852v-36.051h-2.2852z"
+           id="path60" />
+        <path
+           d="m1594.3 263.04h2.2851v-36.051h-2.2851z"
+           id="path62" />
+        <path
+           d="m1594.3 224.7h-5.75v2.2891h5.75z"
+           id="path64" />
+        <path
+           d="m1594.3 263.04h-5.75v2.2891h5.75z"
+           id="path66" />
+      </g>
+      <path
+         d="m1543.5 263.04h-5.75v-20.434h5.75z"
+         fill="#fff"
+         id="path70" />
+      <g
+         id="g80">
+        <path
+           d="m1548.2 263.04h2.2851v-28.57h-2.2851z"
+           id="path72" />
+        <path
+           d="m1556.2 263.04h2.2891v-28.57h-2.2891z"
+           id="path74" />
+        <path
+           d="m1556.2 232.19h-5.7461v2.2852h5.7461z"
+           id="path76" />
+        <path
+           d="m1556.2 263.04h-5.7461v2.2891h5.7461z"
+           id="path78" />
+      </g>
+      <g
+         fill="#fff"
+         id="g88">
+        <path
+           d="m1556.2 263.04h-5.7461v-28.57h5.7461z"
+           id="path82" />
+        <path
+           d="m1568.9 263.04h-5.75v-20.434h5.75z"
+           id="path84" />
+        <path
+           d="m1581.6 263.04h-5.75v-26.961h5.75z"
+           id="path86" />
+      </g>
+      <path
+         d="m1594.3 263.04h-5.75v-36.051h5.75z"
+         fill="#f0bd47"
+         id="path90"
+         style="fill:#31e7ff;fill-opacity:1" />
+      <g
+         id="g144">
+        <path
+           d="m1555.7 226.47h-2.2891v-2.2852h2.2891z"
+           id="path92" />
+        <path
+           d="m1557.9 228.75h-2.2851v-2.2852h2.2851z"
+           id="path94" />
+        <path
+           d="m1560.2 228.75h-2.2891v-2.2852h2.2891z"
+           id="path96" />
+        <path
+           d="m1562.5 231.04h-2.2851v-2.2852h2.2851z"
+           id="path98" />
+        <path
+           d="m1564.8 231.04h-2.2852v-2.2852h2.2852z"
+           id="path100" />
+        <path
+           d="m1551.1 226.47h2.2891v-2.2852h-2.2891z"
+           id="path102" />
+        <path
+           d="m1548.8 228.75h2.2851v-2.2852h-2.2851z"
+           id="path104" />
+        <path
+           d="m1546.5 228.75h2.2891v-2.2852h-2.2891z"
+           id="path106" />
+        <path
+           d="m1544.2 231.04h2.2851v-2.2852h-2.2851z"
+           id="path108" />
+        <path
+           d="m1541.9 231.04h2.2891v-2.2852h-2.2891z"
+           id="path110" />
+        <path
+           d="m1539.6 233.33h2.2852v-2.2852h-2.2852z"
+           id="path112" />
+        <path
+           d="m1537.4 233.33h2.289v-2.2852h-2.289z"
+           id="path114" />
+        <path
+           d="m1587.7 221.89h-2.2891v-2.2852h2.2891z"
+           id="path116" />
+        <path
+           d="m1583.1 221.89h2.2851v-2.2852h-2.2851z"
+           id="path118" />
+        <path
+           d="m1580.8 224.18h2.2852v-2.2891h-2.2852z"
+           id="path120" />
+        <path
+           d="m1578.5 224.18h2.2891v-2.2891h-2.2891z"
+           id="path122" />
+        <path
+           d="m1576.2 226.47h2.2851v-2.2852h-2.2851z"
+           id="path124" />
+        <path
+           d="m1573.9 226.47h2.2891v-2.2852h-2.2891z"
+           id="path126" />
+        <path
+           d="m1590 219.61h2.2891v-2.2891h-2.2891z"
+           id="path128" />
+        <path
+           d="m1592.2 219.61h2.289v-2.2891h-2.289z"
+           id="path130" />
+        <path
+           d="m1587.7 219.61h2.2851v-2.2891h-2.2851z"
+           id="path132" />
+        <path
+           d="m1571.7 228.75h2.2851v-2.2852h-2.2851z"
+           id="path134" />
+        <path
+           d="m1569.4 228.75h2.2891v-2.2852h-2.2891z"
+           id="path136" />
+        <path
+           d="m1567.1 231.04h2.2851v-2.2852h-2.2851z"
+           id="path138" />
+        <path
+           d="m1564.8 231.04h2.2891v-2.2852h-2.2891z"
+           id="path140" />
+        <path
+           d="m1596.6 270.34h-61.109v2.2891h61.109z"
+           id="path142" />
+      </g>
+    </g>
   </g>
- </g>
 </svg>

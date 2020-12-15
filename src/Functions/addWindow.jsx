@@ -1,5 +1,3 @@
-import { ReactElement } from 'react';
-import ReactDOM from 'react-dom';
 import { Window } from '../Components/Window/Main.jsx';
 
 export const addWindow = (data, w, h, x, y) => {

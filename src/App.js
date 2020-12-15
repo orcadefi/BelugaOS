@@ -7,7 +7,11 @@ class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {}
-    window.ethereum.autoRefreshOnNetworkChange = false
+    try {
+      window.ethereum.autoRefreshOnNetworkChange = false
+    } catch ( err ) {
+
+    }
   }
 
   render() {

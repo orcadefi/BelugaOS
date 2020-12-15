@@ -9,7 +9,6 @@ import Stakingimg from "../Images/Staking.svg";
 import Votingimg from "../Images/Voting.svg";
 import Orcaimg from "../Images/Orca.svg"
 
-import { Window } from './Window/Main.jsx'
 import * as  Docs from './Window/Docs.jsx';
 import * as  Voting from './Window/Voting.jsx';
 import * as  Staking from './Window/Staking.jsx';
@@ -36,7 +35,7 @@ export const images = [
 ]
 
 export const windowIDs = {
-    1: {label: "Beluga Project", id: 1, element: <Docs.WindowDocs/>},
+    1: {label: "Orca Project", id: 1, element: <Docs.WindowDocs/>},
     2: {label: "Read Me", id: 2, element: <Docs.WindowReadMe/>},
     3: {label: "Voting", id: 3, element: <Voting.WindowVoting/>},
     4: {label: "Submit Proposal", id: 4, element: <Voting.WindowSubmitProposal/>},
@@ -65,5 +64,5 @@ export const windowIDs = {
     27: {label:"Verified Identity", id:27, element:<Profile.WindowVerifyIdentity/>},
     28: {label:"Borrow History", id:28, element:<Profile.WindowBorrowHistory/>},
     29: {label:"Lend History", id:29, element:<Profile.WindowLendHistory/>},
-    30: "<Profile.Window/>",
+    30: "<Profile.Window/>"
 };

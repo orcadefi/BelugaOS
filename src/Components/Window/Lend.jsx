@@ -98,7 +98,7 @@ export class WindowLendLooking extends React.Component {
             Object.assign(starsDiv[i], { star: Star0img });
         }
         return (
-            <div key={id} className="icon-div-window" style={{ textAlign: "center" }}>
+            <div key={id} className="icon-div-window" style={{ textAlign: "center", display: "block", gridTemplate: "none" }}>
                 <label className="text" >{title}</label>
                 <div style={{ position: "relative", width: "125px", height: "75px", left: "20%", borderRadius: "10px 10px 10px 10px" }}>
                     {image !== undefined ? <img style={{ minWidth: "max(100%)", minHeight: "max(100%)", maxWidth: "125px", maxHeight: "75px" }} src={image} alt={title} /> : <div style={{ width: "100%", height: "100%", backgroundColor: "#666666" }} />}

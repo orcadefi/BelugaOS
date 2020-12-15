@@ -16,7 +16,7 @@
 }
 
 .App-header {
-  background-color: #7ccfa1;
+  background-color: #3e79ce;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,12 +39,12 @@
   }
 }
 
-html, body, #Beluga, #Beluga>div {
+html, body, #Orca, #Orca>div {
   height: 100vh;
 }
 
 html {
-  background-color: #7ccfa1;
+  background-color: #3e79ce;
   z-index: -4;
 }
 

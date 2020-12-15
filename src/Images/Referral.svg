@@ -1,70 +1,200 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="21.318mm" height="21.08mm" version="1.1" viewBox="0 0 21.318 21.08" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
- <defs>
-  <clipPath>
-   <path d="m166 153h748v571.11h-748z"/>
-  </clipPath>
-  <clipPath id="clip2">
-   <rect width="1439" height="725"/>
-  </clipPath>
-  <g clip-path="url(#clip2)"></g>
-  <clipPath>
-   <path d="m0 0.67969h1v2.3203h-1z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m6 0.67969h1426v2.3203h-1426z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m0 666h1v2.8398h-1z"/>
-  </clipPath>
-  <clipPath>
-   <path d="m6 666h1426v2.8398h-1426z"/>
-  </clipPath>
-  <clipPath id="clip5">
-   <rect width="1439" height="669"/>
-  </clipPath>
-  <g clip-path="url(#clip5)"></g>
- </defs>
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
- <g transform="translate(-70.325 -156.47)">
-  <g transform="matrix(.35278 0 0 .35278 -471.48 37.782)">
-   <path d="m1555.2 371.98v7.6484l2.2852 8.3594 2.289 5.9102h6.6914v-5.9102l-2.2851-8.0039-2.2891-8.0039z" fill="#fff"/>
-   <path d="m1594 338.73-3.7656-1.1445-2.5351 1.1445-6.3047 2.2852-6.3008 2.2891-6.3008 2.2852v26.398l6.3008 2.2852 6.3008 2.2891 6.3047 2.2852h6.3007z" fill="#fff"/>
-   <g>
-    <path d="m1566.5 347.87h-18.777v-2.2852h18.777z"/>
-    <path d="m1575 345.59h-6.3008v-2.2891h6.3008z"/>
-    <path d="m1581.4 343.3h-6.3047v-2.2852h6.3047z"/>
-    <path d="m1587.7 341.01h-6.3008v-2.2852h6.3008z"/>
-    <path d="m1594 338.73h-6.3007v-2.2891h6.3007z"/>
-    <path d="m1575 371.98h-6.3008v2.2852h6.3008z"/>
-    <path d="m1581.4 374.27h-6.3047v2.2891h6.3047z"/>
-    <path d="m1587.7 376.56h-6.3008v2.2852h6.3008z"/>
-    <path d="m1594 378.84h-6.3007v2.2891h6.3007z"/>
-    <path d="m1566.5 371.98h-18.777v-2.2891h18.777z"/>
-    <path d="m1547.7 369.7h-2.2852v-21.824h2.2852z"/>
-    <path d="m1555.2 379.99h-2.2851v-8.0039h2.2851z"/>
-    <path d="m1557.5 387.99h-2.2891v-8.0039h2.2891z"/>
-    <path d="m1559.8 393.75h-2.2851v-5.7617h2.2851z"/>
-    <path d="m1564.2 379.99h-2.2891v-8.0039h2.2891z"/>
-    <path d="m1566.5 387.99h-2.2851v-8.0039h2.2851z"/>
-    <path d="m1559.8 393.9h6.6914v2.2891h-6.6914z"/>
-    <path d="m1568.7 393.9h-2.2891v-5.9102h2.2891z"/>
-    <path d="m1545.4 353.33h-7.2968v-2.2852h7.2968z"/>
-    <path d="m1545.4 366.53h-7.2968v-2.2852h7.2968z"/>
-    <path d="m1538.1 364.24h-2.2852v-10.914h2.2852z"/>
-    <path d="m1568.7 371.98h-2.2891v-26.398h2.2891z"/>
-    <path d="m1596.2 378.84h-2.2891v-40.117h2.2891z"/>
-   </g>
-   <path d="m1566.5 369.7h-18.777v-21.824h18.777z" fill="#f0bd47"/>
-   <path d="m1538.1 364.24h7.2968v-10.914h-7.2968z" fill="#7acfa1"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="21.318mm"
+   height="21.08mm"
+   version="1.1"
+   viewBox="0 0 21.318 21.08"
+   id="svg96"
+   sodipodi:docname="Referral.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="760"
+     inkscape:window-height="480"
+     id="namedview98"
+     showgrid="false"
+     inkscape:zoom="1.6661972"
+     inkscape:cx="30.711144"
+     inkscape:cy="60.377677"
+     inkscape:window-x="676"
+     inkscape:window-y="95"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg96" />
+  <defs
+     id="defs32">
+    <clipPath
+       id="clipPath4">
+      <path
+         d="m166 153h748v571.11h-748z"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       id="clip2">
+      <rect
+         width="1439"
+         height="725"
+         id="rect6" />
+    </clipPath>
+    <g
+       clip-path="url(#clip2)"
+       id="g9" />
+    <clipPath
+       id="clipPath13">
+      <path
+         d="m0 0.67969h1v2.3203h-1z"
+         id="path11" />
+    </clipPath>
+    <clipPath
+       id="clipPath17">
+      <path
+         d="m6 0.67969h1426v2.3203h-1426z"
+         id="path15" />
+    </clipPath>
+    <clipPath
+       id="clipPath21">
+      <path
+         d="m0 666h1v2.8398h-1z"
+         id="path19" />
+    </clipPath>
+    <clipPath
+       id="clipPath25">
+      <path
+         d="m6 666h1426v2.8398h-1426z"
+         id="path23" />
+    </clipPath>
+    <clipPath
+       id="clip5">
+      <rect
+         width="1439"
+         height="669"
+         id="rect27" />
+    </clipPath>
+    <g
+       clip-path="url(#clip5)"
+       id="g30" />
+  </defs>
+  <metadata
+     id="metadata34">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-70.325 -156.47)"
+     id="g94">
+    <g
+       transform="matrix(.35278 0 0 .35278 -471.48 37.782)"
+       id="g92">
+      <path
+         d="m1555.2 371.98v7.6484l2.2852 8.3594 2.289 5.9102h6.6914v-5.9102l-2.2851-8.0039-2.2891-8.0039z"
+         fill="#fff"
+         id="path36" />
+      <path
+         d="m1594 338.73-3.7656-1.1445-2.5351 1.1445-6.3047 2.2852-6.3008 2.2891-6.3008 2.2852v26.398l6.3008 2.2852 6.3008 2.2891 6.3047 2.2852h6.3007z"
+         fill="#fff"
+         id="path38" />
+      <g
+         id="g86">
+        <path
+           d="m1566.5 347.87h-18.777v-2.2852h18.777z"
+           id="path40" />
+        <path
+           d="m1575 345.59h-6.3008v-2.2891h6.3008z"
+           id="path42" />
+        <path
+           d="m1581.4 343.3h-6.3047v-2.2852h6.3047z"
+           id="path44" />
+        <path
+           d="m1587.7 341.01h-6.3008v-2.2852h6.3008z"
+           id="path46" />
+        <path
+           d="m1594 338.73h-6.3007v-2.2891h6.3007z"
+           id="path48" />
+        <path
+           d="m1575 371.98h-6.3008v2.2852h6.3008z"
+           id="path50" />
+        <path
+           d="m1581.4 374.27h-6.3047v2.2891h6.3047z"
+           id="path52" />
+        <path
+           d="m1587.7 376.56h-6.3008v2.2852h6.3008z"
+           id="path54" />
+        <path
+           d="m1594 378.84h-6.3007v2.2891h6.3007z"
+           id="path56" />
+        <path
+           d="m1566.5 371.98h-18.777v-2.2891h18.777z"
+           id="path58" />
+        <path
+           d="m1547.7 369.7h-2.2852v-21.824h2.2852z"
+           id="path60" />
+        <path
+           d="m1555.2 379.99h-2.2851v-8.0039h2.2851z"
+           id="path62" />
+        <path
+           d="m1557.5 387.99h-2.2891v-8.0039h2.2891z"
+           id="path64" />
+        <path
+           d="m1559.8 393.75h-2.2851v-5.7617h2.2851z"
+           id="path66" />
+        <path
+           d="m1564.2 379.99h-2.2891v-8.0039h2.2891z"
+           id="path68" />
+        <path
+           d="m1566.5 387.99h-2.2851v-8.0039h2.2851z"
+           id="path70" />
+        <path
+           d="m1559.8 393.9h6.6914v2.2891h-6.6914z"
+           id="path72" />
+        <path
+           d="m1568.7 393.9h-2.2891v-5.9102h2.2891z"
+           id="path74" />
+        <path
+           d="m1545.4 353.33h-7.2968v-2.2852h7.2968z"
+           id="path76" />
+        <path
+           d="m1545.4 366.53h-7.2968v-2.2852h7.2968z"
+           id="path78" />
+        <path
+           d="m1538.1 364.24h-2.2852v-10.914h2.2852z"
+           id="path80" />
+        <path
+           d="m1568.7 371.98h-2.2891v-26.398h2.2891z"
+           id="path82" />
+        <path
+           d="m1596.2 378.84h-2.2891v-40.117h2.2891z"
+           id="path84" />
+      </g>
+      <path
+         d="m1566.5 369.7h-18.777v-21.824h18.777z"
+         fill="#f0bd47"
+         id="path88"
+         style="fill:#31e7ff;fill-opacity:1" />
+      <path
+         d="m1538.1 364.24h7.2968v-10.914h-7.2968z"
+         fill="#7acfa1"
+         id="path90"
+         style="fill:#ccd4df;fill-opacity:1" />
+    </g>
   </g>
- </g>
 </svg>

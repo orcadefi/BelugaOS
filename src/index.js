@@ -8,7 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('Beluga')
+  document.getElementById('Orca')
 );
 
 reportWebVitals();

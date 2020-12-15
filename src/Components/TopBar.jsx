@@ -1,17 +1,17 @@
 import React from 'react';
 import DropdownMenu from './DropdownMenu'
 import "../Casscade style-sheet/Components.css"
-import BelugaPayIcon from "../Images/BelugaPayIcon.svg"
+import OrcaPayIcon from "../Images/Orca.svg"
 
 class TopBar extends React.Component {
     render() {
         return (
             <div className="topbar-div">
                 <div>
-                    <img src={BelugaPayIcon} alt="logo" className="topbar-logo" />
+                    <img src={OrcaPayIcon} alt="logo" className="topbar-logo" />
                 </div>
                 <div>
-                    <label className="text topbar-label"> Beluga OS</label>
+                    <label className="text topbar-label"> Orca OS</label>
                 </div>
                 <div>
                     <label className="text topbar-label topbar-no-button">File</label>

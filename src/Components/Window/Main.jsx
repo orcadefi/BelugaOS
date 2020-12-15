@@ -4,40 +4,7 @@ import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import "../../Casscade style-sheet/Components.css";
 
-//Windows imports from packages
-import * as Docs from './Docs.jsx';
-import * as Voting from './Voting.jsx';
-import * as Staking from './Staking.jsx';
-import * as Lend from './Lend.jsx';
-import * as Referral from './Referral.jsx';
-import * as Borrow from './Borrow.jsx';
-import * as Roadmap from './Roadmap.jsx';
-import * as Mail from './Mail.jsx';
-import * as Profile from './Profile.jsx';
-
 import { windowIDs } from '../Constant.jsx';
-
-//import { getGlobal, setGlobal} from '../Functions/globalContext.ts'
-
-export let translation = {
-    1: { "label": "Beluga Porject", "Window": <Docs.WindowDocs /> },
-    2: { "label": "Voting", "Window": <Voting.WindowVoting /> },
-    3: { "label": "Stake your BBI", "Window": <Staking.WindowStaking /> },
-    4: { "label": "Lend", "Window": <Lend.WindowLend /> },
-    5: { "label": "Referral Program", "Window": <Referral.WindowReferral /> },
-    6: { "label": "Borrow", "Window": <Borrow.WindowBorrow /> },
-    7: { "label": "Roadmap", "Window": <Roadmap.WindowRoadmap /> },
-    8: { "label": "Email", "Window": <Mail.WindowMail /> },
-    9: { "label": "Profile", "Window": <Profile.WindowProfile /> },
-    10: { "label": "Orca", "Window": undefined },
-    11: { "label": "", "Window": undefined },
-    12: { "label": "Read Me", "Window": <Docs.WindowReadMe /> },
-    13: { "label": "Submit Proposal", "Window": <Voting.WindowSubmitProposal /> },
-    14: { "label": "Active Proposals", "Window": <Voting.WindowActiveProposals /> },
-    15: { "label": "Post Proposals", "Window": <Voting.WindowHistoricalProposals /> },
-    'length': 15
-}
-
 
 export class Window extends React.Component {
 
@@ -90,7 +57,7 @@ export class Window extends React.Component {
             }
             actualDiv.style.zIndex = max
         }
-        if (actualZindex == (divs.length + 2)) {
+        if (actualZindex === (divs.length + 2)) {
             for (let i = 0; i < divs.length; i = i + 1) {
                 if (divs[i].style.zIndex === actualZindex && divs[i].id !== ("window-resizable-" + this.state.id)) {
                     divs[i].style.zIndex = divs[i].style.zIndex - 1;
@@ -210,11 +177,11 @@ class WindowTopBar extends React.Component {
         return (
             <div className="window-topbar">
                 <div className="lines" style={{ gridColumn: "2/3" }}></div>
-                <div className="square" style={{ gridColumn: "4/5" }}></div>
+                <div className="square" onClick={() => this.closeWindow()} style={{ cursor: "pointer", gridColumn: "4/5" }}></div>
                 <div className="lines" style={{ gridColumn: "6/7" }}></div>
                 <div className="text" style={{ gridColumn: "8/9", gridRow: "2/3", textAlign: "center" }}>{this.props.label}</div>
                 <div className="lines" style={{ gridColumn: "10/11" }}></div>
-                <div className="square" onClick={() => this.closeWindow()} style={{ cursor: "pointer", gridColumn: "12/13" }}><div style={{ width: "45%", height: "45%", borderRight: "solid black", borderBottom: "solid black", borderWidth: "2px", backgroundColor: "#E6E7E8" }}></div></div>
+                <div className="square" style={{ gridColumn: "12/13" }}><div style={{ width: "45%", height: "45%", borderRight: "solid black", borderBottom: "solid black", borderWidth: "2px", backgroundColor: "#E6E7E8" }}></div></div>
                 <div className="lines" style={{ gridColumn: "14/15" }}></div>
                 <div style={{ gridColumn: "1/16", gridRow: "4/5", borderTop: "solid black", borderWidth: "2px" }}></div>
             </div>
