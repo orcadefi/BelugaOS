@@ -22,16 +22,21 @@ import * as  Profile from './Window/Profile.jsx';
 export const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisi eros, ullamcorper a vestibulum at, fringilla quis neque. Mauris id metus ac tortor dapibus consectetur ac eu lectus. Sed at tortor eu nulla pellentesque egestas. Donec pellentesque at nulla et hendrerit. Curabitur sit amet urna eget elit pharetra varius. Nam viverra enim et libero pellentesque bibendum."
 
 export const images = [
-    { object: Docsimg, label: "Docs", id: 1, action: 1 },
-    { object: Votingimg, label: "Voting", id: 2, action: 3 },
-    { object: Stakingimg, label: "Staking", id: 3, action: 8 },
-    { object: Lendimg, label: "Lend", id: 4, action: 9 },
-    { object: Referralimg, label: "Referral", id: 5, action: 15 },
-    { object: Borrowimg, label: "Borrow", id: 6, action: 16 },
-    { object: Roadmapimg, label: "Roadmap", id: 7, action: 23 },
-    { object: Mailimg, label: "Mail", id: 8, action: 24 },
-    { object: Profileimg, label: "Profile", id: 9, action: 25 },
-    { object: Orcaimg, label: "Orca", id: 10, action: function orca() { window.open('http://orcadefi.com/', '_blank') }}
+    { object: Docsimg, label: "Docs", id: 1, action: 1, divName: "-home" },
+    { object: Votingimg, label: "Voting", id: 2, action: 3, divName: "-home" },
+    { object: Stakingimg, label: "Staking", id: 3, action: 8, divName: "-home" },
+    { object: Lendimg, label: "Lend", id: 4, action: 9, divName: "-home" },
+    //{ object: Lendimg, label: "Lend", id: 4, action: function unavailable() { }, divName: "-unavailable" },
+    //{ object: Referralimg, label: "Referral", id: 5, action: 15, divName: "-home" },
+    { object: Referralimg, label: "Referral", id: 5, action: function unavailable() { }, divName: "-unavailable" },
+    { object: Borrowimg, label: "Borrow", id: 6, action: 16, divName: "-home" },
+    //{ object: Borrowimg, label: "Borrow", id: 6, action: function unavailable() { }, divName: "-unavailable" },
+    { object: Roadmapimg, label: "Roadmap", id: 7, action: 23, divName: "-home" },
+    //{ object: Mailimg, label: "Mail", id: 8, action: 24, divName: "-home" },
+    { object: Mailimg, label: "Mail", id: 8, action: function unavailable() { }, divName: "-unavailable" },
+    { object: Profileimg, label: "Profile", id: 9, action: 25, divName: "-home" },
+    //{ object: Profileimg, label: "Profile", id: 9, action: function unavailable() { }, divName: "-unavailable" },
+    { object: Orcaimg, label: "Orca", id: 10, action: function orca() { window.open('http://orcadefi.com/', '_blank') }, divName: "-home"}
 ]
 
 export const windowIDs = {

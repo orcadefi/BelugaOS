@@ -25,7 +25,7 @@ import Checkimg from "../../Images/Check.svg"
 import Imgicoimg from "../../Images/imgico.svg"
 import Verifiedimg from "../../Images/Verified.svg"
 
-import {usersRegister} from "../../Functions/APIFetch.ts"
+//import {usersRegister} from "../../Functions/APIFetch.ts"
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 
@@ -91,11 +91,9 @@ export class WindowProfile extends React.Component {
             
         }
         if (res.status === 200 && recovered.mensaje === "Authentication successful") {
-            console.log("Signature verified");
             window.alert("Logged in successfully")
             globalContext.setGlobal({ token: recovered.token });
         } else {
-            console.log("Signature not verified");
             window.alert("An error occurred, please try again")
         }
     };
@@ -159,15 +157,19 @@ export class WindowProfile extends React.Component {
 
     render() {
         let ProfileData = [
-            { object: Messagesimg, label: "Messages", id: 20, action: 26 },
-            { object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: 27 },
-            { object: BorrowHistoryimg, label: "Borrow History", id: 22, action: 28 },
-            { object: LendHistoryimg, label: "Lend History", id: 23, action: 29 }
+            //{ object: Messagesimg, label: "Messages", id: 20, action: 26, divName: "-window" },
+            { object: Messagesimg, label: "Messages", id: 20, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            //{ object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: 27, divName: "-window" },
+            { object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            //{ object: BorrowHistoryimg, label: "Borrow History", id: 22, action: 28, divName: "-window" },
+            { object: BorrowHistoryimg, label: "Borrow History", id: 22, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            //{ object: LendHistoryimg, label: "Lend History", id: 23, action: 29, divName: "-window" }
+            { object: LendHistoryimg, label: "Lend History", id: 23, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(3, 100px)" }}>
                 {ProfileData.map((data) =>
-                    <Icon divName="-window" id={data.id} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)} />
+                    <Icon divName={data.divName} id={data.id} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)} />
                 )}
             </div>
         )
@@ -282,7 +284,6 @@ export class WindowMessages extends React.Component {
     }
 
     userDiv = () => {
-        console.log(this.state)
         return (
             this.state.users.map((data) =>
                 <div className="chatUser" style={{ position: "relative", width: "100%", height: "70px", display: "grid", gridTemplateColumns: "75px 1fr", gap: "5px" }}>
@@ -355,15 +356,13 @@ export class WindowVerifyIdentity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 3,
+            step: 1,
             checkPhone: false,
         }
     }
 
     submit = async () => {
-        //submit data
-        console.log(await usersRegister());
-        //this.nextStep();
+        this.nextStep();
     }
 
     nextStep = (data) => {

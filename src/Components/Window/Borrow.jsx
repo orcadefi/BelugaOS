@@ -1,9 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import { addWindow } from '../../Functions/addWindow.jsx'
+import { addWindow } from '../../Functions/addWindow.jsx';
 import { windowIDs } from '../Constant.jsx';
 import createWindow from '../../Functions/createWindow.ts';
+import Icon from '../Icon.jsx';
+
+import ProjectHistoryimg from "../../Images/Borrow/ProjectHistory.svg";
+import StartProjectimg from "../../Images/Borrow/StartProject.svg";
 
 
 export class WindowBorrow extends React.Component {
@@ -47,8 +51,16 @@ export class WindowBorrow extends React.Component {
 
 
     render() {
+        let BorrowData = [
+            { object: StartProjectimg, label: "Start Project", id: 24, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            { object: ProjectHistoryimg, label: "My Project History", id: 25, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" }
+        ]
         return (
-            <div></div>
+            <div className="window-grid" style={{ gridTemplateColumns: "repeat(3, 100px)" }}>
+                {BorrowData.map((data) =>
+                    <Icon divName={data.divName} id={data.id} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)} />
+                )}
+            </div>
         )
     }
 }

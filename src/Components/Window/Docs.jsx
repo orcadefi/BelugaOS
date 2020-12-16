@@ -58,7 +58,7 @@ export class WindowDocs extends React.Component {
     render() {
         let DocsData = [
             
-            { object: GitHubimg, label: "Github", id: 11, action: function orca() { window.open('https://github.com/orcadefi/BelugaOS', '_blank') }},
+            { object: GitHubimg, label: "Github", id: 11, action: function orca() { window.open('https://github.com/orcadefi/OrcaOS', '_blank') }},
             { object: ReadMeimg, label: "Read Me", id: 12, action: 2}
         ]
         return (

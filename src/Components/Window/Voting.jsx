@@ -64,14 +64,16 @@ export class WindowVoting extends React.Component {
 
     render() {
         let VotingData = [
-            { object: Submitimg, label: "Submit Proposal", id: 13 , action: 4},
-            { object: Activeimg, label: "Active Proposals", id: 14, action: 5 },
-            { object: Historicalimg, label: "Historical Propoals", id: 15, action: 6 }
+            { object: Activeimg, label: "Active Proposals", id: 14, action: 5, divName: "-window" },
+            //{ object: Submitimg, label: "Submit Proposal", id: 13 , action: 4, divName: "-window" },
+            { object: Submitimg, label: "Submit Proposal", id: 13 , action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            //{ object: Historicalimg, label: "Historical Propoals", id: 15, action: 6, divName: "-window" }
+            { object: Historicalimg, label: "Historical Propoals", id: 15, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" }
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(auto, 100px)" }}>
                 {VotingData.map((data) =>
-                    <Icon divName="-window" key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)}/>
+                    <Icon divName={data.divName} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)}/>
                 )}
             </div>
         )
@@ -130,21 +132,39 @@ export class WindowActiveProposals extends React.Component {
         let proposals = [
             {
                 id: 0,
-                title: "Focus on Mobile App",
+                title: "Orca OS Style",
                 expires: "3d 12h 3m 26s",
-                text: loremIpsum
+                text: "Should we keep the desktop style of OrcaOS"
             },
             {
                 id: 1,
-                title: "Burn Tokens",
+                title: "Focus on Microloans",
                 expires: "3d 12h 3m 26s",
-                text: loremIpsum
+                text: "Should OrcaOS focus on microloans for entrepreneurs"
             },
             {
                 id: 2,
-                title: "Translate App to Russian",
+                title: "Focus on real time data",
                 expires: "3d 12h 3m 26s",
-                text: loremIpsum
+                text: "Should OrcaOS focus on real time data for DeFi"
+            },
+            {
+                id: 3,
+                title: "Marketplace for DeFi models",
+                expires: "3d 12h 3m 26s",
+                text: "Should we build a marketplace for different DeFi models"
+            },
+            {
+                id: 4,
+                title: "Logo update",
+                expires: "3d 12h 3m 26s",
+                text: "Should we update the logo"
+            },
+            {
+                id: 5,
+                title: "Fee update",
+                expires: "3d 12h 3m 26s",
+                text: "We plan to offer a 2% fee on our optimization pool. Should we increase from 2.0% to 2.5%"
             }
         ]
         return (
