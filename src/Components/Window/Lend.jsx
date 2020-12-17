@@ -70,13 +70,13 @@ export class WindowLend extends React.Component {
 
     LendData = [
         //{ object: LendLookingimg, label: "Projects Looking for Funding", id: 16, action: 10, divName: "-window" },
-        { object: LendLookingimg, label: "Projects Looking for Funding", id: 16, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+        { object: LendLookingimg, label: "Projects Looking for Funding", id: 16, action: function commingSoon() { }, divName: "-unavailable" },
         //{ object: LendActiveimg, label: "Active Projects", id: 17, action: 11, divName: "-window" },
-        { object: LendActiveimg, label: "Active Projects", id: 17, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+        { object: LendActiveimg, label: "Active Projects", id: 17, action: function commingSoon() { }, divName: "-unavailable" },
         //{ object: LendPreviousimg, label: "Previous Loans", id: 18, action: 12, divName: "-window" },
-        { object: LendPreviousimg, label: "Previous Loans", id: 18, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+        { object: LendPreviousimg, label: "Previous Loans", id: 18, action: function commingSoon() { }, divName: "-unavailable" },
         //{ object: LendStatsimg, label: "Stats", id: 19, action: 13, divName: "-window" }
-        { object: LendStatsimg, label: "Stats", id: 19, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" }
+        { object: LendStatsimg, label: "Stats", id: 19, action: function commingSoon() { }, divName: "-unavailable" }
     ]
 
     render() {

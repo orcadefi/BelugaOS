@@ -25,6 +25,8 @@ import Checkimg from "../../Images/Check.svg"
 import Imgicoimg from "../../Images/imgico.svg"
 import Verifiedimg from "../../Images/Verified.svg"
 
+import { metamaskAlert } from "../../Functions/alertWindow";
+
 //import {usersRegister} from "../../Functions/APIFetch.ts"
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
@@ -45,14 +47,12 @@ export class WindowProfile extends React.Component {
     }
 
     getAccounts = async () => {
-        let acc
         try {
-            acc = await (window).ethereum.request({ method: 'eth_requestAccounts' });
+            const acc = await (window).ethereum.request({ method: 'eth_requestAccounts' });
+            globalContext.setGlobal({ account: acc });
         } catch (err) {
-            window.alert("Plese connect metamask")
-            return
+            throw new Error("Plese connect metamask");
         }
-        globalContext.setGlobal({ account: acc });
     }
 
     getChallenge = async () => {
@@ -104,13 +104,29 @@ export class WindowProfile extends React.Component {
         try {
             web3 = await getWeb3();
         } catch (err) {
-            window.alert(err)
+            const error = (
+                <div>
+                    <label>{err}</label>
+                    <br/>
+                    <button className="activeButton" onClick={ () => window.open('https://metamask.io/download.html', '_blank') }>Download</button>
+                </div>
+            )
+            metamaskAlert(error);
             return
         }
         
         globalContext.setGlobal({ web3: web3 });
-        await this.getAccounts();
-        if(globalContext.getGlobal('account'))
+        try {
+            await this.getAccounts();
+        } catch (err) {
+            const error = (
+                <div>
+                    <label>{err.message}</label>
+                </div>
+            )
+            metamaskAlert(error);
+            return
+        }
 
         await this.getChallenge()
         await this.signChallenge()
@@ -158,13 +174,13 @@ export class WindowProfile extends React.Component {
     render() {
         let ProfileData = [
             //{ object: Messagesimg, label: "Messages", id: 20, action: 26, divName: "-window" },
-            { object: Messagesimg, label: "Messages", id: 20, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            { object: Messagesimg, label: "Messages", id: 20, action: function commingSoon() { }, divName: "-unavailable" },
             //{ object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: 27, divName: "-window" },
-            { object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            { object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: function commingSoon() { }, divName: "-unavailable" },
             //{ object: BorrowHistoryimg, label: "Borrow History", id: 22, action: 28, divName: "-window" },
-            { object: BorrowHistoryimg, label: "Borrow History", id: 22, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            { object: BorrowHistoryimg, label: "Borrow History", id: 22, action: function commingSoon() { }, divName: "-unavailable" },
             //{ object: LendHistoryimg, label: "Lend History", id: 23, action: 29, divName: "-window" }
-            { object: LendHistoryimg, label: "Lend History", id: 23, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            { object: LendHistoryimg, label: "Lend History", id: 23, action: function commingSoon() { }, divName: "-unavailable" },
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(3, 100px)" }}>

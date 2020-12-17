@@ -52,8 +52,8 @@ export class WindowBorrow extends React.Component {
 
     render() {
         let BorrowData = [
-            { object: StartProjectimg, label: "Start Project", id: 24, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
-            { object: ProjectHistoryimg, label: "My Project History", id: 25, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" }
+            { object: StartProjectimg, label: "Start Project", id: 24, action: function commingSoon() { }, divName: "-unavailable" },
+            { object: ProjectHistoryimg, label: "My Project History", id: 25, action: function commingSoon() { }, divName: "-unavailable" }
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(3, 100px)" }}>

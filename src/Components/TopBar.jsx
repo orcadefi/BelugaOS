@@ -14,16 +14,20 @@ class TopBar extends React.Component {
                     <label className="text topbar-label"> Orca OS</label>
                 </div>
                 <div>
-                    <label className="text topbar-label topbar-no-button">File</label>
+                    {/*<label className="text topbar-label topbar-no-button">File</label>*/}
+                    <label className="text topbar-label topbar-no-button"></label>
                 </div>
                 <div>
-                    <label className="text topbar-label topbar-no-button">Edit</label>
+                    {/*<label className="text topbar-label topbar-no-button">Edit</label>*/}
+                    <label className="text topbar-label topbar-no-button"></label>
                 </div>
                 <div>
-                    <label className="text topbar-label topbar-no-button">View</label>
+                    {/*<label className="text topbar-label topbar-no-button">View</label>*/}
+                    <label className="text topbar-label topbar-no-button"></label>
                 </div>
                 <div>
-                    <label className="text topbar-label topbar-no-button">Help</label>
+                    {/*<label className="text topbar-label topbar-no-button">Help</label>*/}
+                    <label className="text topbar-label topbar-no-button"></label>
                 </div>
                 <DropdownMenu imgcurrency={this.props.imgcurrency} alt={this.props.currencyalt} currency={this.props.currency}/>
             </div>

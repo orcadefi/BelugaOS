@@ -66,14 +66,14 @@ export class WindowVoting extends React.Component {
         let VotingData = [
             { object: Activeimg, label: "Active Proposals", id: 14, action: 5, divName: "-window" },
             //{ object: Submitimg, label: "Submit Proposal", id: 13 , action: 4, divName: "-window" },
-            { object: Submitimg, label: "Submit Proposal", id: 13 , action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" },
+            { object: Submitimg, label: "Submit Proposal", id: 13 , action: function commingSoon() { }, divName: "-unavailable" },
             //{ object: Historicalimg, label: "Historical Propoals", id: 15, action: 6, divName: "-window" }
-            { object: Historicalimg, label: "Historical Propoals", id: 15, action: function commingSoon() { window.alert("Comming Soon") }, divName: "-unavailable" }
+            { object: Historicalimg, label: "Historical Propoals", id: 15, action: function commingSoon() { }, divName: "-unavailable" }
         ]
         return (
             <div className="window-grid" style={{ gridTemplateColumns: "repeat(auto, 100px)" }}>
                 {VotingData.map((data) =>
-                    <Icon divName={data.divName} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)}/>
+                    <Icon divName={data.divName} id={data.id} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)}/>
                 )}
             </div>
         )
