@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Errorimg from '../Images/Error.svg'
+import Errorimg from '../Images/Error.svg';
+import Metamaskimg from '../Images/Metamask.svg';
+
+import '../Casscade style-sheet/AlertWindow.css'
 
 const createWindow = (window_id, widget) => {
     let div_id = "div-window-" + window_id;
     if (document.getElementById(div_id) == null) {
         var windows = document.createElement("div");
         windows.setAttribute("id", div_id);
+        windows.setAttribute("class", "div-window-error")
         var homeDiv = document.getElementById('topbar');
         document.body.insertBefore(windows, homeDiv);
         ReactDOM.render(
@@ -34,7 +38,8 @@ class Alert extends React.Component{
 
     render() {
         return (
-            <div onClick={this.closeWindow} style={{position: "absolute", width: "300px", height: "200px", maxWidth: "50vw", maxHeight: "50vh", zIndex: 1001, backgroundColor: "#f1f2f2", left: "calc(50vw - 150px)", top: "calc(50vh - 100px)", fontFamily: "charcoalregular"}}>
+            <div className="alert-class" onClick={this.closeWindow} >
+                <label className="close-X">X</label>
                 {this.props.object}
             </div>
         )
@@ -43,10 +48,10 @@ class Alert extends React.Component{
 
 export const metamaskAlert = (object) => {
     const x = (
-        <div style={{ width: "calc(100% - 46px)", height: "calc(100% - 46px)", padding: "23px", display: "grid", gridTemplateColumns: "100px 1fr", alignSelf: "center" }}>
-            <img alt="Error" src={Errorimg} style={{width: "80px", alignSelf: "center", marginLeft: "auto", marginRight :"auto"}}/>
+        <div className="metamask-alert">
+            <img alt="Metamask error" src={Metamaskimg} style={{width: "80px", alignSelf: "center", marginLeft: "auto", marginRight :"auto"}}/>
             <div style={{alignSelf: "center"}}>{object}</div>
         </div>
     );
-    createWindow("alert-No web3", <Alert object={ x }/>);
+    createWindow("alert-Metamask", <Alert object={ x }/>);
 }

@@ -56,12 +56,22 @@ export class WindowProfile extends React.Component {
     }
 
     getChallenge = async () => {
-        const accounts = globalContext.getGlobal('account');
+            const accounts = globalContext.getGlobal('account');
+        if (accounts === undefined) {
+            throw new Error("Please connect a metamask account")
+            return;
+        }
 
-        const res = await fetch(
-            HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${accounts[0].toLowerCase()}`
-        );
-        let resJson = await res.json()
+        let resJson;
+        try {
+            const res = await fetch(
+                HEROKU_NO_CORS + `http://orcadefi.com:8080/auth/${accounts[0].toLowerCase()}`
+            );
+            resJson = await res.json()
+        } catch (err) {
+            throw new Error("Error fetching challenge, please try again")
+            return;
+        }
         this.setState({ challenge: resJson });
     };
 
@@ -72,8 +82,9 @@ export class WindowProfile extends React.Component {
         let result = null;
         try {
             result = await web3.currentProvider.request({ method: "eth_signTypedData", params: [challenge, accounts[0]] })
-        } catch {
-            //TODO
+        } catch (err) {
+            throw new Error("Please sign the challenge to Log In")
+            return;
         }
         this.setState({ signature: result });
     };
@@ -87,14 +98,26 @@ export class WindowProfile extends React.Component {
         let recovered = null
         try {
             recovered = await res.json();
-        } catch {
-            
+        } catch (err) {
+            throw new Error("Error sending signature, please try again")
+            return;
         }
+
         if (res.status === 200 && recovered.mensaje === "Authentication successful") {
-            window.alert("Logged in successfully")
+            const status = (
+                <div>
+                    <label>{"Logged in successfully"}</label>
+                </div>
+            )
+            metamaskAlert(status);
             globalContext.setGlobal({ token: recovered.token });
         } else {
-            window.alert("An error occurred, please try again")
+            const status = (
+                <div>
+                    <label>{"An error occurred, please try again"}</label>
+                </div>
+            )
+            metamaskAlert(status);
         }
     };
 
@@ -108,7 +131,7 @@ export class WindowProfile extends React.Component {
                 <div>
                     <label>{err}</label>
                     <br/>
-                    <button className="activeButton" onClick={ () => window.open('https://metamask.io/download.html', '_blank') }>Visit metamask</button>
+                    <button className="activeButton" onClick={ () => window.open('https://metamask.io/download.html', '_blank') }>Visit metamask.com</button>
                 </div>
             )
             metamaskAlert(error);
@@ -118,6 +141,9 @@ export class WindowProfile extends React.Component {
         globalContext.setGlobal({ web3: web3 });
         try {
             await this.getAccounts();
+            await this.getChallenge();
+            await this.signChallenge();
+            await this.verifySignature();    
         } catch (err) {
             const error = (
                 <div>
@@ -128,9 +154,6 @@ export class WindowProfile extends React.Component {
             return
         }
 
-        await this.getChallenge()
-        await this.signChallenge()
-        await this.verifySignature()
 
     };
 
@@ -183,7 +206,7 @@ export class WindowProfile extends React.Component {
             { object: LendHistoryimg, label: "Lend History", id: 23, action: function commingSoon() { }, divName: "-unavailable" },
         ]
         return (
-            <div className="window-grid" style={{ gridTemplateColumns: "repeat(3, 100px)" }}>
+            <div className="window-grid">
                 {ProfileData.map((data) =>
                     <Icon divName={data.divName} id={data.id} key={data.id} src={data.object} alt={data.label} label={data.label} action={typeof data.action === "function" ? data.action : () => this.changeWindow(data.action)} />
                 )}

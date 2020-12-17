@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'charcoalregular';
+    src: url('../Fonts/charcoal-webfont.woff2') format('woff2'),
+         url('../Fonts/charcoal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.div-window-error {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.alert-class{
+    width: max-content;
+    height: max-content;
+    max-width: 50vw;
+    max-height: 50vh;
+    background-color: #f1f2f2;
+    font-family: charcoalregular;
+    border: solid black 2px
+}
+
+.metamask-alert{
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    align-self: center;
+    text-align: center;
+}
+
+.close-X{
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    right: 2px;
+    float: right;
+    cursor: pointer;
+}
+
+@media screen and (orientation: portrait) {
+    .metamask-alert{
+        grid-template-rows: 1fr 2fr;
+        grid-template-columns: 1fr;
+    }    
+}

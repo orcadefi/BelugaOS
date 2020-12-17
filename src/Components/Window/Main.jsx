@@ -143,7 +143,7 @@ export class Window extends React.Component {
                 ref={this.draggRef}
             >
                 <div>
-                    <ResizableBox className="window-container" width={this.state.resize_width} height={this.state.resize_height} minConstraints={[420, 300]}
+                    <ResizableBox className="window-container" width={this.state.resize_width <= window.innerWidth ? this.state.resize_width : window.innerWidth} height={this.state.resize_height <= (window.innerHeight - 40) ? this.state.resize_height : (window.innerHeight - 40)} minConstraints={[420, 300]}
                         maxConstraints={[this.state.max_width_size, this.state.max_height_size]}
                     >
                         <div style={{ width: "100%", height: "100%" }} onClick={() => this.updateZIndex()}>
@@ -180,7 +180,7 @@ class WindowTopBar extends React.Component {
                 <div className="lines" style={{ gridColumn: "2/3" }}></div>
                 <div className="square close" onClick={() => this.closeWindow()} onTouchEnd={() => this.closeWindow()}></div>
                 <div className="lines" style={{ gridColumn: "6/7" }}></div>
-                <div className="text" style={{ gridColumn: "8/9", gridRow: "2/3", textAlign: "center" }}>{this.props.label}</div>
+                <div className="text textOverflow" style={{ gridColumn: "8/9", gridRow: "2/3", textAlign: "center" }}>{this.props.label}</div>
                 <div className="lines" style={{ gridColumn: "10/11" }}></div>
                 <div className="square" style={{ gridColumn: "12/13" }}><div style={{ width: "45%", height: "45%", borderRight: "solid black", borderBottom: "solid black", borderWidth: "2px", backgroundColor: "#E6E7E8" }}></div></div>
                 <div className="lines" style={{ gridColumn: "14/15" }}></div>
