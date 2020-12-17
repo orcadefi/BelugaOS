@@ -8,7 +8,7 @@ const getWeb3 = () =>
       web3 = new Web3(web3.currentProvider);
       resolve(web3);
     } else {
-      reject("No web3 instance injected, make sure MetaMask is installed.");
+      reject("Please make sure MetaMask is installed.");
     }
   });
 

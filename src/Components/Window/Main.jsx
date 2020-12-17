@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import "../../Casscade style-sheet/Components.css";
+import "../../Casscade style-sheet/Window.css"
 
 import { windowIDs } from '../Constant.jsx';
 
@@ -177,7 +178,7 @@ class WindowTopBar extends React.Component {
         return (
             <div className="window-topbar">
                 <div className="lines" style={{ gridColumn: "2/3" }}></div>
-                <div className="square" onClick={() => this.closeWindow()} style={{ cursor: "pointer", gridColumn: "4/5" }}></div>
+                <div className="square close" onClick={() => this.closeWindow()} onTouchEnd={() => this.closeWindow()}></div>
                 <div className="lines" style={{ gridColumn: "6/7" }}></div>
                 <div className="text" style={{ gridColumn: "8/9", gridRow: "2/3", textAlign: "center" }}>{this.props.label}</div>
                 <div className="lines" style={{ gridColumn: "10/11" }}></div>

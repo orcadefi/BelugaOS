@@ -62,7 +62,7 @@ export const windowIDs = {
     20: "<Borrow.Window/>",
     21: "<Borrow.Window/>",
     22: "<Borrow.Window/>",
-    23: {label:"---", id:23, element:<Roadmap.WindowRoadmap/>},
+    23: {label:"Roadmap", id:23, element:<Roadmap.WindowRoadmap/>},
     24: {label:"Email", id:24, element:<Mail.WindowMail/>},
     25: {label:"Profile", id:25, element:<Profile.WindowProfile/>},
     26: {label:"Messages", id:26, element:<Profile.WindowMessages/>},

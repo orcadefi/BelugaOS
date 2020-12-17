@@ -108,7 +108,7 @@ export class WindowProfile extends React.Component {
                 <div>
                     <label>{err}</label>
                     <br/>
-                    <button className="activeButton" onClick={ () => window.open('https://metamask.io/download.html', '_blank') }>Download</button>
+                    <button className="activeButton" onClick={ () => window.open('https://metamask.io/download.html', '_blank') }>Visit metamask</button>
                 </div>
             )
             metamaskAlert(error);
