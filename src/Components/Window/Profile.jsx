@@ -59,7 +59,6 @@ export class WindowProfile extends React.Component {
             const accounts = globalContext.getGlobal('account');
         if (accounts === undefined) {
             throw new Error("Please connect a metamask account")
-            return;
         }
 
         let resJson;
@@ -70,7 +69,6 @@ export class WindowProfile extends React.Component {
             resJson = await res.json()
         } catch (err) {
             throw new Error("Error fetching challenge, please try again")
-            return;
         }
         this.setState({ challenge: resJson });
     };
@@ -81,10 +79,10 @@ export class WindowProfile extends React.Component {
         const { challenge } = this.state;
         let result = null;
         try {
-            result = await web3.currentProvider.request({ method: "eth_signTypedData", params: [challenge, accounts[0]] })
+            result = await web3.request({ method: "eth_signTypedData", params: [challenge, accounts[0]] })
         } catch (err) {
+            console.log(err)
             throw new Error("Please sign the challenge to Log In")
-            return;
         }
         this.setState({ signature: result });
     };
@@ -100,7 +98,6 @@ export class WindowProfile extends React.Component {
             recovered = await res.json();
         } catch (err) {
             throw new Error("Error sending signature, please try again")
-            return;
         }
 
         if (res.status === 200 && recovered.mensaje === "Authentication successful") {
