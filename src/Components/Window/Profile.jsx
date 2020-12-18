@@ -47,8 +47,9 @@ export class WindowProfile extends React.Component {
     }
 
     getAccounts = async () => {
+        const web3 = globalContext.getGlobal('web3')
         try {
-            const acc = await (window).ethereum.request({ method: 'eth_requestAccounts' });
+            const acc = await web3.request({ method: 'eth_requestAccounts' });
             globalContext.setGlobal({ account: acc });
         } catch (err) {
             throw new Error("Plese connect metamask");
