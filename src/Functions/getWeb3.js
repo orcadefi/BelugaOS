@@ -14,6 +14,12 @@ export const getWeb3Legacy = () =>
     });
 
 const getWeb3 = async () => {
+
+    if (window.ethereum !== null && window.ethereum !== undefined) {
+        window.ethereum.autoRefreshOnNetworkChange = false;
+        return window.ethereum;
+    }
+
     const provider = await detectEthereumProvider()
 
     if (provider) {
@@ -28,6 +34,7 @@ const getWeb3 = async () => {
             method: 'eth_chainId'
         })
         console.log(chainId)
+        window.ethereum.autoRefreshOnNetworkChange = false;
         return window.ethereum;
     } else {
 
