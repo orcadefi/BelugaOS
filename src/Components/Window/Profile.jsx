@@ -28,6 +28,7 @@ import Verifiedimg from "../../Images/Verified.svg"
 import { metamaskAlert } from "../../Functions/alertWindow";
 
 //import {usersRegister} from "../../Functions/APIFetch.ts"
+import SurveyInterface from "../../Functions/SurveyInterface";
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 
@@ -196,6 +197,16 @@ export class WindowProfile extends React.Component {
         let ProfileData = [
             //{ object: Messagesimg, label: "Messages", id: 20, action: 26, divName: "-window" },
             { object: Messagesimg, label: "Messages", id: 20, action: function commingSoon() { }, divName: "-unavailable" },
+            //{
+            //    object: Messagesimg, label: "Messages", id: 20, action: function commingSoon() {
+            //        let instance = new SurveyInterface();/*
+            //        instance.addSurvey("First Survey", ["Option 1", "Option2"], Date.now(), 35).then((data) => {
+            //            console.log(data);
+            //        });*/
+            //        instance.isAdmin("0xc19a48d3811CD5EfAa8ced6800C90FE31047FC28", 0).then((data) => {
+            //            console.log(data);
+            //        });
+            //}, divName: "-window" },
             //{ object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: 27, divName: "-window" },
             { object: VerifiedIdentityimg, label: "Verified Identity", id: 21, action: function commingSoon() { }, divName: "-unavailable" },
             //{ object: BorrowHistoryimg, label: "Borrow History", id: 22, action: 28, divName: "-window" },

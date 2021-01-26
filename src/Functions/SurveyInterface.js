@@ -1,15 +1,27 @@
 import Web3 from "web3";
 import abi from "./SurveyABI.json";
+import getWeb3 from "./getWeb3"
 
 const web3 = new Web3(window.ethereum);
 
-let SurveyAddress = "0x37D40510a2F5Bc98AA7a0f7BF4b3453Bcfb90Ac1";
-let SurveyContract = new web3.eth.Contract(abi, SurveyAddress);
+let SurveyAddress = "0xc9f3bD5358bC59e0863E5748B185d9FDe71df79e";
+let SurveyContract = new web3.eth.Contract(abi.abi, SurveyAddress);
+let account;
 
-class SurveyContract {
+export class SurveyInterface {
 
     constructor() {
-        
+
+    }
+
+    getAccounts = async () => {
+        await getWeb3();
+        try {
+            account = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        } catch (err) {
+            console.log(err);
+            throw new Error("Plese connect metamask");
+        }
     }
 
     /**
@@ -19,7 +31,7 @@ class SurveyContract {
      * @returns {boolean} Returns true if addmin and level are correct
      */
     async isAdmin(address, level) {
-        await SurveyContract.methods.isAdmin(address, level);
+        return await SurveyContract.methods.isAdmin(address, level).call();
     }
 
     /**
@@ -29,7 +41,8 @@ class SurveyContract {
      * @returns {boolean} Returns true
      */
     async addAdmin(_newAdmin, level) {
-        await SurveyContract.methods.addAdmin(_newAdmin, level)
+        await this.getAccounts();
+        return await SurveyContract.methods.addAdmin(_newAdmin, level).send({from: account[0]});
     }
 
     /**
@@ -37,7 +50,8 @@ class SurveyContract {
      * @param {string} address Address of the new SurveyDB
      */
     async setSurveyDBContract(address) {
-        await SurveyContract.methods.setSurveyDBContract(address);
+        await this.getAccounts();
+        return await SurveyContract.methods.setSurveyDBContract(address).send({from: account[0]});
     }
 
     /**
@@ -45,14 +59,15 @@ class SurveyContract {
      * @param {string} address Address of the AHT Token Contract
      */
     async setAHTToken(address) {
-        await SurveyContract.methods.setAHTToken(address);
+        await this.getAccounts();
+        return await SurveyContract.methods.setAHTToken(address).send({from: account[0]});
     }
 
     /**
      * @notice This get all the names of the existent surveys
      */
     async getAllSurveys() {
-        let names = await SurveyContract.methods.getAllSurveys();
+        let names = await SurveyContract.methods.getAllSurveys().call();
         return names.map(data => {
             return this.bytes32ToString(data);
         })
@@ -66,7 +81,11 @@ class SurveyContract {
      * @param {integer} rewardPool Reward Pool of the survey
      */
     async addSurvey(name, options, endDate, rewardPool) {
-        await SurveyContract.methods.addSurvey(name, options, endDate, rewardPool);
+        await this.getAccounts();
+        options = options.map(data => {
+            return this.stringToBytes32(data);
+        });
+        return await SurveyContract.methods.addSurvey(this.stringToBytes32(name), options, endDate, rewardPool).send({from: account[0]});
     }
 
     /**
@@ -75,7 +94,8 @@ class SurveyContract {
      * @param {string} surveyOption New option
      */
     async addSurveyOption(surveyName, surveyOption) {
-        await SurveyContract.methods.addSurveyOption(surveyName, surveyOption);
+        await this.getAccounts();
+        return await SurveyContract.methods.addSurveyOption(surveyName, surveyOption).send({from: account[0]});
     }
 
     /**
@@ -85,7 +105,8 @@ class SurveyContract {
      * @param {integer} payoutType Payout type
      */
     async addStakingHistory(surveyName, sender, payoutType) {
-        await SurveyContract.methods.addStakingHistory(surveyName, sender, payoutType, Date.now());
+        await this.getAccounts();
+        return await SurveyContract.methods.addStakingHistory(surveyName, sender, payoutType, Date.now()).send({from: account[0]});
     }
 
     /**
@@ -94,7 +115,8 @@ class SurveyContract {
     * @param {integer} endDate Survey end date
     */
     async updateSurveyEndDate(surveyName, endDate) {
-        await SurveyContract.methods.updateSurveyEndDate(surveyName, endDate);
+        await this.getAccounts();
+        return await SurveyContract.methods.updateSurveyEndDate(surveyName, endDate).send({from: account[0]});
     }
 
     /**
@@ -103,7 +125,8 @@ class SurveyContract {
     * @param {integer} rewardPool Survey reward pool
     */
     async updateSurveyRewardPool(surveyName, rewardPool) {
-        await SurveyContract.methods.updateSurveyRewardPool(surveyName, rewardPool);
+        await this.getAccounts();
+        return await SurveyContract.methods.updateSurveyRewardPool(surveyName, rewardPool).send({from: account[0]});
     }
 
     /**
@@ -111,7 +134,7 @@ class SurveyContract {
     * @return {integer} balance
     */
     async getBalance() {
-        await SurveyContract.methods.getBalance();
+        return await SurveyContract.methods.getBalance().call();
     }
 
     /**
@@ -123,7 +146,8 @@ class SurveyContract {
     * @param {integer} dateVoted Date voted
     */
     async saveAnswer(surveyName, participantOption, ahtVote, typeVote, typeReward, participantAddress) {
-        await SurveyContract.methods.saveAnswer(this.stringToBytes32(surveyName), this.stringToBytes32(participantOption), ahtVote, typeVote, typeReward, participantAddress, Date.now());
+        await this.getAccounts();
+        return await SurveyContract.methods.saveAnswer(this.stringToBytes32(surveyName), this.stringToBytes32(participantOption), ahtVote, typeVote, typeReward, participantAddress, Date.now()).send({from: account[0]});
     }
 
     /**
@@ -133,7 +157,8 @@ class SurveyContract {
     * @param {integer} stakeStartDate Stake start date
     */
     async sendStake(surveyName, amountStaked, sender, stakeStartDate) {
-        await SurveyContract.methods.sendStake(this.stringToBytes32(surveyName), amountStaked, sender, Date.now());
+        await this.getAccounts();
+        return await SurveyContract.methods.sendStake(this.stringToBytes32(surveyName), amountStaked, sender, Date.now()).send({from: account[0]});
     }
 
     /**
@@ -142,7 +167,8 @@ class SurveyContract {
     * @param {integer} dateStop Date stop stake
     */
     async stopStake(surveyName, sender, dateStop) {
-        await SurveyContract.methods.stopStake(this.stringToBytes32(surveyName), sender, Date.now());
+        await this.getAccounts();
+        return await SurveyContract.methods.stopStake(this.stringToBytes32(surveyName), sender, Date.now()).send({from: account[0]});
     }
 
     /**
@@ -153,7 +179,8 @@ class SurveyContract {
     * @param {integer} datePayout Date payout
     */
     async sendReward(surveyName, participant, reward, datePayout) {
-        await SurveyContract.methods.sendReward(this.stringToBytes32(surveyName), participant, reward, Date.now());
+        await this.getAccounts();
+        return await SurveyContract.methods.sendReward(this.stringToBytes32(surveyName), participant, reward, Date.now()).send({from: account[0]});
     }
 
     /**
@@ -161,7 +188,8 @@ class SurveyContract {
     * @param {string} sender Address sender
     */
     async returnAmountStaked(address) {
-        await SurveyContract.methods.returnAmountStaked(address);
+        await this.getAccounts();
+        return await SurveyContract.methods.returnAmountStaked(address).send({from: account[0]});
     }
 
     /**
@@ -173,7 +201,7 @@ class SurveyContract {
     *                   address Owner addres}
     */
     async getSurvey(surveyName) {
-        await SurveyContract.methods.getSurvey(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getSurvey(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -181,7 +209,7 @@ class SurveyContract {
     * @return {integer} amountStaked Total amount staked
     */
     async getTotalAmountStacked() {
-        await SurveyContract.methods.getTotalAmountStacked();
+        return await SurveyContract.methods.getTotalAmountStacked().call();
     }
 
     /**
@@ -190,7 +218,7 @@ class SurveyContract {
     * @return {Object} rewardPool Survey reward pool
     */
     async getSurveyRewardPool(surveyName) {
-        await SurveyContract.methods.getSurveyRewardPool(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getSurveyRewardPool(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -201,7 +229,7 @@ class SurveyContract {
     *                   time Date payout by each sender in the same order than the senders}
     */
     async getSurveyStakingHistory(surveyName) {
-        await SurveyContract.methods.getSurveyStakingHistory(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getSurveyStakingHistory(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -209,7 +237,7 @@ class SurveyContract {
     * @return {integer} amountStaked Amount staked
     */
     async getAmountStaked() {
-        await SurveyContract.methods.getAmountStaked();
+        return await SurveyContract.methods.getAmountStaked().call();
     }
 
     /**
@@ -221,7 +249,7 @@ class SurveyContract {
     *                   rewards Rewards}
     */
     async getStakingInfo(surveyName) {
-        await SurveyContract.methods.getStakingInfo(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getStakingInfo(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -230,7 +258,7 @@ class SurveyContract {
     *                   dateVoted Date voted}
     */
     async getVoteInfo(surveyName) {
-        await SurveyContract.methods.getVoteInfo(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getVoteInfo(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -239,7 +267,7 @@ class SurveyContract {
     * @return {Object[]} votedOptions Voted options
     */
     async getVotedOptions(surveyName) {
-        await SurveyContract.methods.getVotedOptions(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getVotedOptions(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -250,7 +278,7 @@ class SurveyContract {
     *                   AHTVotesAgainst_ AHT Votes AGAINST by each option in the same order tahn the survey options}
     */
     async getSurveyResult(surveyName) {
-        await SurveyContract.methods.getSurveyResult(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getSurveyResult(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -263,7 +291,7 @@ class SurveyContract {
     *                   stakeStatus Flag to see if the participant has staking active in the same order than the participants}
     */
     async getRewardInfo(surveyName) {
-        await SurveyContract.methods.getRewardInfo(this.stringToBytes32(surveyName));
+        return await SurveyContract.methods.getRewardInfo(this.stringToBytes32(surveyName)).call();
     }
 
     /**
@@ -273,7 +301,7 @@ class SurveyContract {
     *                   pay Flag to see if the participant migh withdraw the amount staked}
     */
     async getParticipantsPendingPayment(surveyName) {
-        await SurveyContract.methods.getParticipantsPendingPayment(this.stringToBytes32(surveyName), Date.now());
+        return await SurveyContract.methods.getParticipantsPendingPayment(this.stringToBytes32(surveyName), Date.now()).call();
     }
 
     /**
@@ -293,3 +321,5 @@ class SurveyContract {
     }
 
 }
+
+export default SurveyInterface;

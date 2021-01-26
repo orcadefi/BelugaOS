@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from './Components/Home.jsx';
+import SurveyInterface from "./Functions/SurveyInterface"
 
 class App extends React.Component{
 
@@ -12,6 +13,7 @@ class App extends React.Component{
     } catch ( err ) {
 
     }
+      
   }
 
   render() {

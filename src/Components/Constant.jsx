@@ -36,7 +36,7 @@ export const images = [
     { object: Mailimg, label: "Mail", id: 8, action: function unavailable() { }, divName: "-unavailable" },
     { object: Profileimg, label: "Profile", id: 9, action: 25, divName: "-home" },
     //{ object: Profileimg, label: "Profile", id: 9, action: function unavailable() { }, divName: "-unavailable" },
-    { object: Orcaimg, label: "Orca", id: 10, action: function orca() { window.open('http://orcadefi.com/', '_blank') }, divName: "-home"}
+    { object: Orcaimg, label: "Orca", id: 10, action: function orca() { window.open('http://www.orcadefi.com/', '_blank') }, divName: "-home"}
 ]
 
 export const windowIDs = {
