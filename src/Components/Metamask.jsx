@@ -4,7 +4,7 @@ import getWeb3 from "../Functions/getWeb3"
 import createWindow from '../Functions/createWindow.ts'
 import { addWindow } from '../Functions/addWindow.jsx'
 import { windowIDs } from './Constant.jsx';
-import { setGlobal, getGlobal } from '../Functions/globalContext.ts'
+import { setGlobal } from '../Functions/globalContext.ts'
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 

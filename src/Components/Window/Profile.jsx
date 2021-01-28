@@ -28,7 +28,7 @@ import Verifiedimg from "../../Images/Verified.svg"
 import { metamaskAlert } from "../../Functions/alertWindow";
 
 //import {usersRegister} from "../../Functions/APIFetch.ts"
-import SurveyInterface from "../../Functions/SurveyInterface";
+//import SurveyInterface from "../../Functions/SurveyInterface";
 
 const HEROKU_NO_CORS = 'https://orcadefi.herokuapp.com/';
 

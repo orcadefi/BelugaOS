@@ -4,15 +4,12 @@ import getWeb3 from "./getWeb3"
 
 const web3 = new Web3(window.ethereum);
 
+//Remember to change the Address to the mainnet smart contract when deployed
 let SurveyAddress = "0xc9f3bD5358bC59e0863E5748B185d9FDe71df79e";
 let SurveyContract = new web3.eth.Contract(abi.abi, SurveyAddress);
 let account;
 
 export class SurveyInterface {
-
-    constructor() {
-
-    }
 
     getAccounts = async () => {
         await getWeb3();
@@ -55,12 +52,12 @@ export class SurveyInterface {
     }
 
     /**
-     * @notice This changes the AHT Token Smart Contract
-     * @param {string} address Address of the AHT Token Contract
+     * @notice This changes the BBI Token Smart Contract
+     * @param {string} address Address of the BBI Token Contract
      */
-    async setAHTToken(address) {
+    async setBBIToken(address) {
         await this.getAccounts();
-        return await SurveyContract.methods.setAHTToken(address).send({from: account[0]});
+        return await SurveyContract.methods.setBBIToken(address).send({from: account[0]});
     }
 
     /**
@@ -130,7 +127,7 @@ export class SurveyInterface {
     }
 
     /**
-    * @notice Get AHT Token balance
+    * @notice Get BBI Token balance
     * @return {integer} balance
     */
     async getBalance() {
@@ -138,16 +135,16 @@ export class SurveyInterface {
     }
 
     /**
-    * @notice Save survey answer and transfer aht votes
+    * @notice Save survey answer and transfer bbi votes
     * @param {string} surveyName Survey name
     * @param {string} participantOption Survey option
     * @param {boolean} typeVote Type of vote, true 'FOR' and false 'AGAINST'
     * @param {integer} typeReward Type reward for the participant
     * @param {integer} dateVoted Date voted
     */
-    async saveAnswer(surveyName, participantOption, ahtVote, typeVote, typeReward, participantAddress) {
+    async saveAnswer(surveyName, participantOption, bbiVote, typeVote, typeReward, participantAddress) {
         await this.getAccounts();
-        return await SurveyContract.methods.saveAnswer(this.stringToBytes32(surveyName), this.stringToBytes32(participantOption), ahtVote, typeVote, typeReward, participantAddress, Date.now()).send({from: account[0]});
+        return await SurveyContract.methods.saveAnswer(this.stringToBytes32(surveyName), this.stringToBytes32(participantOption), bbiVote, typeVote, typeReward, participantAddress, Date.now()).send({from: account[0]});
     }
 
     /**
@@ -274,8 +271,8 @@ export class SurveyInterface {
     * @notice Get survey results
     * @param {string} surveyName Survey name
     * @return {Object} {options_ Survey options
-    *                   AHTVotesFor_ AHT Votes FOR by each option in the same order than the survey options
-    *                   AHTVotesAgainst_ AHT Votes AGAINST by each option in the same order tahn the survey options}
+    *                   BBIVotesFor_ BBI Votes FOR by each option in the same order than the survey options
+    *                   BBIVotesAgainst_ BBI Votes AGAINST by each option in the same order tahn the survey options}
     */
     async getSurveyResult(surveyName) {
         return await SurveyContract.methods.getSurveyResult(this.stringToBytes32(surveyName)).call();
