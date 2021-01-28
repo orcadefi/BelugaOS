@@ -4,7 +4,7 @@ OrcaOS Project
 
 ## Summary
 
-This projects automatically deploys change on "Landing" branch
+This projects automatically deploys change on "dev" branch
 
 ## Installation
 
